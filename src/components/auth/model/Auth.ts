@@ -1,13 +1,10 @@
 import { DataTypes, Model, Sequelize, Optional } from 'sequelize';
 import { IAuth } from '../../../types/auth/IAuth';
 
-// Define the attributes for the Auth model
 type AuthAttributes = IAuth;
 
-// Define the creation attributes for the Auth model
 type AuthCreationAttributes = Optional<AuthAttributes, 'id' | '_id' | 'createdAt' | 'updatedAt'>;
 
-// Create the Auth model class
 class Auth extends Model<AuthAttributes, AuthCreationAttributes> implements AuthAttributes {
   public id!: string;
   public _id!: string;
@@ -21,7 +18,7 @@ class Auth extends Model<AuthAttributes, AuthCreationAttributes> implements Auth
 }
 
 // Export a function to initialize the model
-export default (sequelize: Sequelize) => {
+export const initializeAuthModel = (sequelize: Sequelize): typeof Auth => {
   Auth.init(
     {
       id: {
