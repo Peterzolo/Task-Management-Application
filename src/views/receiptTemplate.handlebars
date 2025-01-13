@@ -1,0 +1,140 @@
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{{titleReceipt}} </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'DM Sans', sans-serif;
+        }
+    </style>
+</head>
+<body>
+  <div style="max-width: 780px; max-height:792px; width: 100%; margin: 0 auto; padding: 20px; background: white;">
+<img src={{companyLogo}} alt="{{companyLogo}}" style="width: 48px; height: 48px; vertical-align: middle; background: #F1EFEF; border: 1px solid #F1EFEF; border-radius: 2px;">
+
+       <table width="100%" cellpadding="0" cellspacing="0" style="margin-top: 20px;">
+            <tr>
+                <td style="float:right; width:99px;">
+                    <div>
+                        <p style="padding: 5px; border-radius: 16.5px; text-align: center; font-size: 14px; font-weight: 500; color: #00AA5B; background-color:#ECFFF5;">{{successful}}</p>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+    <table width="100%" cellpadding="0" cellspacing="0" style="margin-top: 2px;">
+        <tr>
+            <td style="text-align: left;">
+                <h2 style="font-weight: 500; font-size: 22px; margin: 0; padding: 0;">{{receipt}}</h2>
+                <p style="margin: 0; padding: 0; font: size 14px; fontweight:400; color:#6C6A78;">{{date}}</p>
+            </td>
+            <td style="text-align: right;">
+                <div style="font-weight: 500; font-size: 36px; margin: 0; padding: 0;">{{formattedTotal}} </div>
+            </td>
+        </tr>
+    </table>
+    <div style="height: 1px; background-color: #DFDFDF; margin: 20px 0;"></div>
+    <table width="100%" cellpadding="0" cellspacing="0" style="margin-top: 20px;">
+        <tr>
+            <td style="text-align: left;">
+                <h2 style="font-weight: 400; font-size: 16px; margin: 0; color:#121212; padding: 0;">{{sender}} </h2>
+                <p style="margin: 10px 0 0 0; padding: 0; color: #6C6A78;">{{senderName}} </p>
+                <p style="margin: 10px 0 0 0; padding: 0; color: #6C6A78;">{{senderEmail}} </p>
+            </td>
+
+            <td style="text-align: right;">
+                <div style="font-weight: 400; font-size: 16px; margin: 0; color:#121212; padding: 0;">{{recipient}} </div>
+                <p style="margin: 10px 0 0 0; padding: 0;color: #6C6A78;">{{recipientName}} </p>
+                <p style="margin: 10px 0 0 0; padding: 0; color: #6C6A78;">{{recipientEmail}} </p>
+            </td>
+        </tr>
+    </table>
+    <div style="height: 1px; background-color: #DFDFDF; margin: 20px 0;"></div>
+    <!-- Add this table to display the data in invoiceContent -->
+    <table width="100%" cellpadding="0" cellspacing="0" style="margin-top: 5px;">
+        <tr>
+            <td style="text-align: left;">
+                <div style="font-weight: 500; font-size: 12px; margin: 0; padding: 0;">{{item}}</div>
+            </td>
+            <td style="text-align: center;">
+                <div style="font-weight: 500; font-size: 12px; margin: 0; padding: 0;">{{quantity}}</div>
+            </td>
+            <td style="text-align: center;">
+                <div style="font-weight: 500; font-size: 12px; margin: 0; padding: 0;">{{unitCost}} </div>
+            </td>
+            <td style="text-align: right;">
+                <div style="font-weight: 500; font-size: 12px; margin: 0; padding: 0;">{{price}}</div>
+            </td>
+        </tr>
+        <tr>
+    <td colspan="4">
+        <div style="height: 1px; background-color: #DFDFDF; margin: 20px 0;"></div>
+    </td>
+</tr>
+        {{#each invoiceContent}}
+        <tr>
+            <td style="text-align: left; padding-top: 15px; margin: bottom 20px;">
+                <div style="display: flex; align-items: center;">
+                    <img src="{{image}}" alt="{{item}}" style="max-width: 32px; max-height: 32px; margin-right:10px; border-radius:2px;">
+                    <p style="margin: 7px 0 0 10px; font-size: 16px; color:#121212;">{{name}}</p>
+                </div>
+            </td>
+            <td style="text-align: center; font-weight:500; color:#121212; font-size: 16px; margin: bottom 20px;">{{quantity}}</td>
+            <td style="text-align: center; font-weight:500; color:#121212; font-size: 16px; margin: bottom 20px;">{{ priceInMinor}}</td>
+            <td style="text-align: right; font-weight:500; color:#121212; font-size: 16px; margin: bottom 20px;">{{ quantity}}</td>
+        </tr>
+          <tr style="height: 15px;"></tr>
+        {{/each}}
+    </table>
+  <div style="height: 1px; background-color: #DFDFDF; margin: 20px 0;"></div>
+    <table width="100%" cellpadding="0" cellspacing="0" style="margin-top: 20px;">
+          <tr style="margin-bottom: 30px;">
+            <td style="text-align: left;">
+                <h2 style="font-weight: 500;color:#121212; font-size: 16px; margin: 0; padding: 0;">{{subTotal}}</h2>
+            </td>
+            <td style="text-align: right;">
+                <div style="font-weight: 500; color:#121212; font-size: 16px; margin: 0; padding: 0;">{{formattedSubTotal}}</div>
+            </td>
+        </tr>
+           <tr style="height: 15px;"></tr>
+            <tr>
+            <td style="text-align: left;">
+                <h2 style="font-weight: 500; color:#121212; font-size: 16px; margin: 0; padding: 0;">{{vat}}</h2>
+            </td>
+            <td style="text-align: right;">
+                <div style="font-weight: 500; color:#121212; font-size: 16px; margin: 0; padding: 0;">{{vatValue}}</div>
+            </td>
+        </tr>
+    <tr style="height: 15px;"></tr>
+        <tr>
+            <td style="text-align: left;">
+                <h2 style="font-weight: 500; color:#121212; font-size: 16px; margin: 0; padding: 0;">{{delivery}}</h2>
+            </td>
+            <td style="text-align: right;">
+                <div style="font-weight: 500; color:#121212; font-size: 16px; margin: 0; padding: 0;">{{deliveryFee}}</div>
+            </td>
+        </tr>
+        <tr style="height: 15px;"></tr>
+    </table>
+     <div style="height: 1px; background-color: #DFDFDF; margin: 20px 0;"></div>
+
+       <table width="100%" cellpadding="0" cellspacing="0" style="margin-top: 20px;">
+        <tr>
+            <td style="text-align: left;">
+                <h2 style="font-weight: 700; font-size: 20px; margin: 0; padding: 0;">{{total}}</h2>
+            </td>
+            <td style="text-align: right;">
+                <div style="font-weight: 700; font-size: 20px; margin: 0; padding: 0;">{{formattedTotal}}</div>
+            </td>
+        </tr>
+    </table>
+  </div>
+</body>
+</html>

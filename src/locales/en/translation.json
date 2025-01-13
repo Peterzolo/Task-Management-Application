@@ -1,0 +1,1158 @@
+{
+  "auth": {
+    "responses": {
+      "login": {
+        "invalidCredentials": "Invalid Credentials",
+        "userNotRegistered": "User not registered",
+        "notAuthorized": "You are not authorized",
+        "success": "Logged in successfully",
+        "refreshTokenSuccess" : "Token refreshed successfully"
+      },
+      "backOfficeAuth": {
+        "defaultPassword": "You must change your password to login",
+        "userNotFound": "User not found",
+        "payloadNotGiven": "No email has been supplied",
+        "oldPasswordNotAllowed": "You must create a new password",
+        "passwordChangeSuccess": "You have successfully created a new password",
+        "forgotPasswordRequestSuccess": "Your request for password reset was successful, check your mail to reset your password",
+        "successLogin": "Successful",
+        "notAuthorized": "You are not authorized",
+        "emailTemplateContent": {
+          "header": "Welcome Friend",
+          "greeting": "Hi there,",
+          "forgottenPassword": "You've forgotten your password and that’s totally okay, don't worry! You can reset it with your new password below.",
+          "newPassword": "Your New Password",
+          "resetInstructionHeading": "Password reset instruction",
+          "resetInstruction": "Type in the password above, you will be redirected to where you will have to change your password to a much more secure password. Your new password must contain lower case, uppercase, special character and must have the minimum of 8 characters.",
+          "havingQuestion": "If you have a questions or need any assistance, feel free to reach out to our support team at ",
+          "storebridgerEmail": "storebridger@gmail.com",
+          "bestRegard": "Best regards",
+          "nuspringTeam": "NuspringTeam",
+          "didYou": "Did you receive this email by mistake or have any questions?",
+          "canContact": "You can contact the sender by clicking the button below",
+          "contactUs": "Contact Us",
+          "inviteExpires": "This invite will expire in 1 hour"
+        }
+      },
+      "passwordResetEmailTemplate": {
+        "title": "Storebridger - password reset",
+        "header": "Reset Password🔐",
+        "greeting": "Hello ",
+        "message": " You've forgotten your password and that’s totally okay, don't worry! You can reset it by clicking on the button below",
+        "forgotBtn": "Forgot your password?",
+        "alternativeLink": "In case you are unable to click the verification link directly, you can copy and paste the following URL into your web browser:",
+        "expiry": "This invite will expire in 1 hour"
+      },
+      "passwordResetSuccessEmailTemplate": {
+        "title": "Storebridger - password reset",
+        "header": "Payment Receipt",
+        "greeting": "Hi",
+        "message": "You have successfully reset your password. Now you can access your account with the new password.",
+        "warning": "If you did not request to change your password, kindly contact us immediately at",
+        "supportEmail": "support@nuspringnation.com"
+      },
+      "logout": {
+        "cannotLogout": "Cannot log user out",
+        "alreadyLogout": "User already logout"
+      },
+      "signup": {
+        "emailNotFound": "Email not found",
+        "userRegistered": "User already registered",
+        "signupTokenConfirmed": "Signup token already confirmed",
+        "emailConfirmed": "Email has already been verified",
+        "invalidToken": "Token supplied is invalid",
+        "signupSuccess": "Signup successfully",
+        "tokenExpired": "Token supplied has expired",
+        "emailVerificationTemplate": {
+          "title": "Storebridger - Email verification",
+          "header": "Welcome to Storebridger",
+          "greeting": "Hello there!",
+          "message": "Congratulations! You're almost set to start using Storebridger. To ensure the security of your account and the accuracy of the information provided, we kindly ask you to verify your email address by clicking the verify button below",
+          "verifyEmail": "Verify Email Address",
+          "alternativeLink": "In case you are unable to click the verification link directly, you can copy and paste the following URL into your web browser:"
+        },
+        "signupSuccessEmailTemplate": {
+          "title": "Storebridger - Complete Signup",
+          "header": "SignUp Successful",
+          "greeting": "Hi",
+          "message": "Congratulations! You have successfully signed up",
+          "login": "You can now log in to your account:",
+          "signIn": "Sign In",
+          "supportEmail": "support@storebridger.com"
+        }
+      },
+      "confirmEmail": {
+        "success": "Email confirmed"
+      }
+    },
+    "validations": {
+      "confirmPassword": {
+        "required": "Confirm Password is required",
+        "misMatch": "Confirm Password does not match given password"
+      },
+      "isTermsAgreed":{
+        "required": "You must agree to the terms of service before proceeding"
+      },
+      "email": {
+        "required": "Email is required",
+        "invalid": "Email is invalid",
+        "empty": "Email cannot be empty"
+      },
+      "firstName": {
+        "required": "Firstname is required",
+        "min": "Firstname cannot be less than {{charCount}} characters",
+        "max": "Firstname cannot be greater than {{charCount}} characters"
+      },
+      "businessName": {
+        "required": "Businessname is required",
+        "min": "Businessname cannot be less then {{charCount}} characters"
+      },
+      "country": {
+        "required": "Country is required",
+        "empty": "Country cannot be empty"
+      },
+      "lastName": {
+        "required": "Lastname is required",
+        "min": "Lastname cannot be less than {{charCount}} characters",
+        "max": "Lastname cannot be greater than {{charCount}} characters"
+      },
+      "oAuthId": {
+        "google": {
+          "required": "Google OAuthId required"
+        },
+        "facebook": {
+          "required": ""
+        }
+      },
+      "password": {
+        "required": "Password is required",
+        "min": "Password cannot be less than {{charCount}} characters",
+        "max": "Password cannot be greater than {{charCount}} characters",
+        "pattern": "Password must include uppercase,lowercase, numeric and symbolic characters"
+      },
+      "newPassword": {
+        "required": "New Password is required",
+        "min": "New Password cannot be less than {{charCount}} characters",
+        "max": "New Password cannot be greater than {{charCount}} characters",
+        "pattern": "New Password must include uppercase,lowercase, numeric and symbolic characters"
+      },
+      "phoneNumber":{
+        "required": "Phone number is required",
+        "invalid": "Phone number specified is invalid"
+      },
+      "token": {
+        "required": "Token required"
+      },
+      "defaultPassword": {
+        "required": "Default password is required"
+      }
+    }
+  },
+
+  "apartment": {
+    "apartmentQueriesFetched": "Resources fetched successfully"
+  },
+
+  "booking": {
+    "bookingQueriesFetched": "Resources fetched successfully"
+  },
+  "business": {
+    "validations": {
+      "nameRequired": "Business name required",
+      "minName": "Business name cannot be less than 3 characters",
+      "industryRequired": "Business industry is required",
+      "invalidEmail": "Invalid email supplied",
+      "invalidItemSupplied": "Invalid {{key}} supplied"
+    },
+    "employee": {
+      "employeeExists": "Employee exists"
+    },
+    "invoiceTemplate": {
+      "receipt": "Receipt",
+      "successful": "Successful",
+      "refNumber": "Ref Number:",
+      "sender": "Sender:",
+      "titleInvoice": "Invoice:",
+      "titleReceipt": "Receipt:",
+      "recipient": "recipient",
+      "invoice": "Invoice",
+      "item": "Item",
+      "vat": "Vat",
+      "discount": "Discount",
+      "quantity": "Quantity",
+      "unitCost": "Unit Cost",
+      "price": "price",
+      "subTotal": "Sub Total",
+      "delivery": "Delivery",
+      "total": "total"
+    },
+    "responses": {
+      "notFound": "Business is not found"
+    }
+  },
+  "customer": {
+    "customerAuthentication":{
+      "responses":{
+        "passwordChanged": "Password changed successfully",
+        "invalidCredential":"Invalid Credential"
+      }
+    },
+    "customerExists": "Customer exists",
+    "create": {
+      "validation": {
+        "name": {
+          "required": "Name is required",
+          "empty": "Name is needed",
+          "invalid": "Name must be greater then 5 characters"
+        },
+        "email": {
+          "required": "Email is required",
+          "invalid": "Email is invalid",
+          "empty": "Email cannot be empty"
+        },
+        "phoneNumber": {
+          "required": "Phone number is required",
+          "empty": "Phone number is needed"
+        }
+      }
+    },
+    "customerAddress":{
+      "validation":{
+          "address": {
+            "required":"Address is required",
+            "empty":"Address cannot be empty"
+          },
+          "landMark":{
+            "required":"LandMark is required",
+            "empty":"LandMark cannot be empty"
+          },
+          "street":{
+            "required":"Street is required",
+            "empty":"Street cannot be empty"
+          },
+          "lga":{
+            "required":"LGA is required",
+            "empty": "LGA cannot be empty"
+          },
+          "state":{
+            "required":"State is required",
+            "empty":"State cannot be empty"
+          },
+          "country":{
+            "required":"Country is required",
+            "empty":"Country cannot be empty"
+          },
+          "firstName":{
+            "required":"First Name is required",
+            "empty":"First Name cannot be empty"
+          },
+          "lastName":{
+            "required":"Last Name is required",
+            "empty":"Last Name cannot be empty"
+          }
+        },
+      "country": {
+        "required": "Country is required",
+        "empty": "Country cannot be empty"
+      },
+      "firstName": {
+        "required": "First Name is required",
+        "empty": "First Name cannot be empty"
+      },
+      "lastName": {
+        "required": "Last Name is required",
+        "empty": "Last Name cannot be empty"
+      },
+      "responses": {
+        "notFound": "Address not found"
+      }
+    },
+    "responses":{
+      "notFound":"Customer not found",
+      "emailNotFound":"Customer email not found"
+    }
+  },
+  "common": {
+    "responses": {
+      "created": "Resource created",
+      "deleted": "Resource deleted",
+      "fetched": "Resource fetched",
+      "notCreated": "Resource not created",
+      "notDeleted": "Resource not deleted",
+      "notFetched": "Resource not fetched",
+      "notFound": "Resource not found",
+      "notUpdated": "Resource not updated",
+      "updated": "Resource updated"
+    },
+    "partialContent": {
+      "footer": {
+        "haveQuestion": "If you have any questions or need any assistance, feel free to reach out to our support team at ",
+        "supportEmail": "nuspringnation@gmail.com.com",
+        "storebridgerEmail": "support@nuspring.com",
+        "warmRegards": "Warm regards",
+        "nuspringTeam": "nuspring Team",
+        "followUs": "Follow Us On:",
+        "ourBlogLink": "Visit Our Blog",
+        "didYouReceive": "Did you receive this email by mistake or have any questions? Contact support@nuspring.com",
+        "copyRight": "Copyright © nuspring 2023",
+        "inviteExpiry": "This invite will expire in 30 days."
+      },
+      "expiration": {
+        "expiryMessage": "You have up to {{expiryDate}} before expiration.",
+        "remainingDayMessage": " [ {{remainingDays}} days remaining ]"
+      }
+    }
+  },
+  "contract": {
+    "responses": {
+      "contractSigned": "Contract signed",
+      "contractDeclined": "Contract declined",
+      "categoryNotFound": "Contract category not found",
+      "contractNotFound": "Contract not found",
+      "contractContentTemplateNotFound": "Contract Content Template not found",
+      "notAllowedAccess": "Contract with Id does not exist Or you are not allowed to update the contract",
+      "contractCategoryExists": "Contract Category exists",
+      "recipientNotSigned": "Recipient needs to sign",
+      "inviteeAlreadyExist": "Invitee already exist"
+    },
+    "contractSignatureNotification": {
+      "title": "Contract Signature notification",
+      "header": "One Last Step to Go 💪🏾",
+      "greeting": "Hello ",
+      "message": "We are pleased to let you know that {{signedUser}} has agreed to proceed with the orders by providing their signature. For this order contract to be legally binding and set in motion, you are required to also provide your signature.",
+      "reviewAndSignLink": "Review and Sign",
+      "alternativeLink": "In case you are unable to click the verification link directly, you can copy and paste the following URL into your web browser:"
+    },
+    "fullySignedContractNotification": {
+      "title": "Signed contract",
+      "header": "Contract is now legally binding 📑",
+      "greeting": "Hello ",
+      "message": "Congratulations! your contract is now legally binding."
+    },
+    "timeline": {
+      "appeal": "Contract appeal raised by {{firstName}} {{lastName}}",
+      "deliveryDetails": "Delivery details changed by {{firstName}} {{lastName}}",
+      "signature": "Contract signed by {{firstName}} {{lastName}}",
+      "declined": "Contract declined by {{firstName}} {{lastName}}"
+    },
+    "setInMotionEmailTemplate": {
+      "title": "Contract Signature notification",
+      "header": "Congratulations!!!",
+      "congratulation": "Congratulations",
+      "mutualAgreement": "Both parties now have a mutual agreement and the order contract has been succesfully set in motion.",
+      "clickOnButton": "Click on the button below to proceed to sign the contract.",
+      "processBtn": "Process Order",
+      "signUpOnStorebridger": "Sign up on Storebridger if you don't have a storebridger account yet. -",
+      "learnMore": "Learn More",
+      "review": "Review and sign the contrct. - ",
+      "confirmOrder": "Cff",
+      "needMoreInfo": " That's it! if you need more information, you can find it ",
+      "here": "here",
+      "cheers": "Cheers",
+      "team": "Storebridger Team.",
+      "receivedByMistake": "Did you receive this email by mistake or have any questions?",
+      "contactSender": "You can contact the sender by clicking the button below.",
+      "sender": "Contact Sender",
+      "expiry": "This invite will expire in 30 days."
+    },
+    "contractInvitationEmailTemplate": {
+      "title": "Sign up verification",
+      "header": "You have been invited!",
+      "greeting": "Hi ",
+      "messageBuyer": "You have been invited to attest to the eligibility of the items you are purchasing.",
+      "messageSeller": "You have been invited to attest to the eligibility of the items you are selling.",
+      "clickBtn": "Click the button below to sign the contract",
+      "reviewAndSign": "Review and Sign",
+      "alternativeLink": "In case you are unable to click the link above, you can copy and paste the following URL into your web browser."
+    },
+    "orderFlowEmailTemplate": {
+      "title": "Order flow",
+      "header": "Review Invoice & Proceed To Payment",
+      "greeting": "Hi",
+      "message": "{{orderCreator}} just created an order for you to review. An invoice has been created for this order. Kindly review the invoice, then proceed to payment.",
+      "clickBtn": "You can access your invoice through this button below.  They also left you additional notes to review before payment.",
+      "reviewInvoice": "Review Invoice",
+      "alternativeLink": "In case you are unable to click the link above, you can copy and paste the following URL into your web browser."
+    },
+    "contractInvitationDecline": {
+      "title": "Contract Invitation Decline notification",
+      "header": "Contract Declined 🚫",
+      "message": "We would like to inform you that the invitation sent to sign the contract below was declined by the recipient.:",
+      "hello": "Hello"
+    },
+    "orderSentOut": {
+      "title": "Order Dispatch Notification",
+      "header": "Order Dispatched!! 🛍️",
+      "greeting": "Hi ",
+      "message": "{{vendor}} has dispatched your order. Kindly ensure that you are available to receive your item(s).",
+      "review": "Also, do not forget to review the item(s) on Storebridger before the review time elapses."
+    },
+    "orderReviewReminder": {
+      "title": "Order Review",
+      "header": "Order Review Reminder 🛎",
+      "greeting": "Hello ",
+      "message": "We would like to remind you that you now have approximately {{minutes}} minutes left to review your order and give your response.",
+      "reviewOrder": "Review Order",
+      "alternativeLink": "In case you are unable to click the copy the link above, you can copy and paste the following URL into your web browser."
+    },
+    "appeal": {
+      "response": {
+        "invalidAmount": "Total amount is invalid",
+        "notFound": "Appeal not found",
+        "alreadyClosed": "Appeal already resolved"
+      },
+      "validations": {
+        "sellerAmountInMinor": {
+          "required": "Seller amount is required",
+          "empty": "Seller amount cannot be empty"
+        },
+        "buyerAmountInMinor": {
+          "required": "Buyer amount is required",
+          "empty": "Buyer amount cannot be empty"
+        }
+      },
+      "refundRequestAppealBySeller": {
+        "title": "Appeal Refund",
+        "header": "You appealed a refund 🛑",
+        "greeting": "Hello",
+        "message1": "You appealed a buyer’s request for a refund. The order details are below:",
+        "message2": "A Storebridger support expert has been assigned to your appeal and would reach out to you where necessary..",
+        "thanks": "Thank you for using Storebridger.",
+        "itemText": "Item",
+        "buyerText": "Buyer",
+        "unitText": "Units",
+        "priceText": "Price"
+      },
+      "refundRequestByBuyer": {
+        "title": "Refund Request",
+        "header": "Your request for a refund was appealed by the Seller 🛑",
+        "greeting": "Hello",
+        "message1": "You requested a refund on {{date}} for the order below:",
+        "message2": "The seller has appealed your refund request. A Storebridger support expert has been assigned to this appeal and would reach out to you where necessary..",
+        "thanks": "Thank you for using Storebridger.",
+        "itemText": "Item",
+        "sellerText": "Buyer",
+        "unitText": "Units",
+        "priceText": "Price"
+      }
+    },
+    "paymentReceived": {
+      "title": "Payment Received",
+      "header": "Payment Received ✅",
+      "greeting": "Hi ",
+      "message": "The sum of {{totalAmount}} has been paid into your balance following the successful delivery of the order placed by {{buyer}} (Buyer).",
+      "viewBalance": "View Balance",
+      "alternativeLink": "In case you are unable to use the above button, you can copy and paste the following URL into your web browser.",
+      "storebridgerEmail": "support@storebridger.com"
+    },
+    "reviewOrderContract": {
+      "title": "Review Order Contract",
+      "header": "Review Order Contract 📝",
+      "greeting": "Hi ",
+      "message": "{{businessName}} just created an order contract for you to review. You have approximately 48 hours to review the Order Contract.",
+      "viewReceipt": "Review Order Contract",
+      "alternativeLink": "In case you are unable to use the above button, you can copy and paste the following URL into your web browser."
+    },
+    "paymentSuccessful": {
+      "title": "Payment Successful",
+      "header": "Payment Successful ✅",
+      "greeting": "Hi ",
+      "message": "Here is the receipt for your payment of {{totalAmount}} to {{businessName}}. Kindly click on the button below to view your receipt.",
+      "viewReceipt": "View Receipt",
+      "alternativeLink": "In case you are unable to use the above button, you can copy and paste the following URL into your web browser."
+    },
+    "buyerHasMadePayment": {
+      "title": "Review Order Contract",
+      "header": "Buyer Has Made Payment ✅",
+      "greeting": "Hi ",
+      "message": "{{buyer}} paid the sum of {{totalAmount}} for their order on {{paymentDate}}.",
+      "viewBalance": "View Balance",
+      "alternativeLink": "In case you are unable to use the above button, you can copy and paste the following URL into your web browser."
+    },
+    "almostDeliveryDuedate": {
+      "title": "delivery due date",
+      "header": "It’s Almost Delivery Due Date 🗓️",
+      "greeting": "Hi ",
+      "message": "The delivery date for {{buyer}} (Buyer’s) order is {{deliveryDueDate}}. You can ",
+      "viewOrder": "view the order due for delivery here"
+    },
+    "deliveryDueDateExceeded": {
+      "title": "delivery due date",
+      "header": "Delivery Due Date has been exceeded!",
+      "greeting": "Hi ",
+      "message": "You failed to deliver {{buyer}} (Buyer’s) order on {{deliveryDueDate}}. You can ",
+      "viewOrder": "view the due order here."
+    },
+    "balanceHasBeenFunded": {
+      "title": "Funded Balance",
+      "header": "Balance has been funded ✅",
+      "greeting": "Hello ",
+      "message": "Your balance was successfully funded with the sum of ₦{{totalAmount}}. You can view your balance by clicking on the button below.",
+      "viewBalance": "View Balance.",
+      "alternativeLink": "In case you are unable to use the above button, you can copy and paste the following URL into your web browser."
+    },
+    "withdrawalSuccessful": {
+      "title": "Funded Balance",
+      "header": "Withdrawal Successful ✅",
+      "greeting": "Hello ",
+      "message": "The sum of ₦{{totalAmount}} was successfully withdrawn from your balance. The withdrawal details are provided below:",
+      "bank": "Bank",
+      "accountNumber": "Account Number",
+      "name": "Bank",
+      "amount": "Bank",
+      "date": "Date",
+      "time": "Time"
+    },
+    "promoCode": {
+      "title": "Promo Code received!",
+      "header": "You have received a promo code!✅",
+      "greeting": "Hello ",
+      "message": "Congratulations! You have won a discount. Use the code {{couponCode}} to enjoy {{amount}} off your next order!",
+      "useCode": "Use Promo Code"
+    },
+    "validations": {
+      "authorRole": {
+        "required": "author role is required",
+        "invalid": "author role is invalid",
+        "empty": "author role is needed"
+      },
+      "categoryId": {
+        "required": "Category id is required",
+        "invalid": "Category id is invalid",
+        "empty": "Category id is needed"
+      },
+      "contractId": {
+        "required": "Contract id is required",
+        "invalid": "Contract id is invalid",
+        "empty": "Contract id is needed"
+      },
+      "recipientId": {
+        "required": "Recipient id is required",
+        "invalid": "Recipient id is invalid",
+        "empty": "Recipient id is needed"
+      },
+      "title": {
+        "required": "Title id is required",
+        "invalid": "Title id is invalid",
+        "empty": "Title id is needed"
+      },
+      "description": {
+        "required": "Description id is required",
+        "invalid": "Description id is invalid",
+        "empty": "Description id is needed"
+      },
+      "inviteeEmail": {
+        "required": "Invitee email is required",
+        "invalid": "Invitee email is invalid",
+        "empty": "Invitee email is needed"
+      },
+      "appealAction": {
+        "required": "Appeal action is required",
+        "invalid": "Appeal action is invalid",
+        "empty": "Appeal action is needed"
+      },
+      "appealId": {
+        "required": "Appeal action is required",
+        "invalid": "Appeal action is invalid",
+        "empty": "Appeal action is needed"
+      },
+      "role": {
+        "required": "Role is required",
+        "invalid": "Role is invalid",
+        "empty": "Role is needed"
+      },
+      "userId": {
+        "required": "User id is required",
+        "empty": "User id is needed"
+      },
+      "contract": {
+        "required": "Contract is required"
+      },
+      "appealRaiserId": {
+        "required": "Appeal raiser id is required",
+        "empty": "Appeal raiser id is needed"
+      },
+      "complaint": {
+        "required": "Complaint is required",
+        "empty": "Complaint is needed"
+      },
+      "imageProofs": {
+        "required": "Image proofs is required",
+        "empty": "Image proofs is needed"
+      }
+    },
+    "draftContract": {
+      "response": {
+        "notFound": "Draft contract not found",
+        "deleted": "Draft contract deleted",
+        "updated": "Draft contract updated"
+      }
+    },
+    "archivedContract": {
+      "response": {
+        "notFound": "Archived contract not found",
+        "deleted": "Archived contract deleted"
+      }
+    }
+  },
+  "order": {
+    "successResponse": {
+      "fetched": "Order successfully fetched"
+    },
+    "errorResponses": {
+      "notFound": "Order not found",
+      "notAllowed": "Update not allowed"
+    },
+    "create": {
+      "validation": {
+        "contractId": {
+          "required": "Contract id is required",
+          "invalid": "Contract id is invalid",
+          "empty": "Contract id is needed"
+        },
+        "paymentType": {
+          "invalid": "Payment type is invalid",
+          "empty": "Payment type cannot be empty"
+        },
+        "paymentMethod": {
+          "invalid": "Payment method is invalid",
+          "empty": "Payment method  cannot be empty"
+        },
+        "orderType": {
+          "required": "order type is required",
+          "invalid": "order type is invalid",
+          "empty": "order type is needed"
+        },
+        "reviewDuration": {
+          "required": "Review duration is required",
+          "empty": "Review duration cannot be empty"
+        },
+        "orderItem": {
+          "price": {
+            "required": "Price is required",
+            "invalid": "Price is invalid",
+            "empty": "Price is needed"
+          },
+          "productId": {
+            "invalid": "Product id is invalid",
+            "empty": "Product id is needed"
+          },
+          "description": {
+            "required": "Description is required",
+            "invalid": "Description is invalid",
+            "empty": "Description is needed"
+          },
+          "condition": {
+            "required": "Condition is required",
+            "invalid": "Condition is invalid",
+            "empty": "Condition is needed"
+          },
+          "quantity": {
+            "required": "Quantity is required",
+            "invalid": "Quantity is invalid",
+            "empty": "Quantity is needed"
+          },
+          "images": {
+            "required": "Images is required",
+            "invalid": "Images is invalid",
+            "empty": "Images is needed"
+          }
+        },
+        "customerId": {
+          "required": "CustomerId is required",
+          "empty": "CustomerId is needed"
+        },
+        "orderPayment": {
+          "amountInMinor": {
+            "required": "Amount is required",
+            "invalid": "Amount is invalid",
+            "empty": "Amount is needed"
+          },
+          "paymentDueDate": {
+            "required": "Payment due date is required",
+            "empty": "Payment due date is needed"
+          },
+          "percentInDecimal": {
+            "required": "Payment in decimal is required",
+            "empty": "Payment in decimal is needed"
+          },
+          "title": {
+            "required": "Title is required",
+            "empty": "Title is needed"
+          }
+        }
+      }
+    },
+    "draftOrder": {
+      "validate": {
+        "order": {
+          "required": "Order is required",
+          "empty": "Order cannot be empty"
+        }
+      }
+    },
+    "createDeliveryDetails": {
+      "validation": {
+        "reviewDuration": {
+          "required": "Review duration is required",
+          "empty": "Review duration cannot be empty",
+          "invalid": "Review duration must be equal or greater than 1"
+        },
+        "deliveryChargeToBuyer": {
+          "required": "Delivery charged to buyer is required",
+          "empty": "Delivery charged to buyer cannot be empty",
+          "invalid": "Delivery charged to buyer must be equal or greater than 1"
+        },
+        "hasFlexibleDeliveryDate": {
+          "required": "Has flexible delivery date is required",
+          "empty": "Has flexible delivery date cannot be empty",
+          "invalid": "Has flexible delivery date must be a boolean value"
+        },
+        "deliveryDate": {
+          "required": "Delivery date is required",
+          "empty": "Delivery date cannot be empty",
+          "invalid": "Delivery date must be a boolean value"
+        },
+        "deliveryAddress": {
+          "required": "Delivery address is required",
+          "empty": "Delivery address cannot be empty"
+        },
+        "deliveryFee": {
+          "required": "Delivery fee is required",
+          "empty": "Delivery fee cannot be empty"
+        },
+        "recipientPhoneNumber": {
+          "required": "Recipient phone number is required",
+          "empty": "Recipient phone number cannot be empty",
+          "validPhoneNumber": "Recipient phone number must be a valid phone number"
+        }
+      }
+    },
+    "sendInvoice": {
+      "validation": {
+        "orderId": {
+          "required": "Order id is required",
+          "empty": "Order id is needed"
+        },
+        "recipientName": {
+          "required": "Recipient name is required",
+          "empty": "Recipient name is needed"
+        },
+        "recipientEmail": {
+          "required": "Recipient email is required",
+          "empty": "Recipient email is needed"
+        }
+      }
+    }
+  },
+  "partner": {
+    "responses": {
+      "read": {
+        "notFound": "Partner not found",
+        "fetchPartner": "Fetch Partner"
+      }
+    },
+    "validations": {
+      "businessName": {
+        "required": "Business name is required",
+        "invalid": "Business name is invalid",
+        "empty": "Business name is needed"
+      },
+      "businessIndustry": {
+        "required": "Business industry is required",
+        "invalid": "Business industry is invalid",
+        "empty": "Business industry is needed"
+      },
+      "businessRegistrationNumber": {
+        "required": "Business registeration number is required",
+        "invalid": "Business registeration number is invalid",
+        "empty": "Business registeration number is needed"
+      }
+    }
+  },
+  "image": {
+    "create": {
+      "successResponse": {
+        "created": "Image created successfully"
+      },
+      "validation": {
+        "image": {
+          "required": "image is required"
+        }
+      }
+    },
+    "delete": {
+      "successResponse": {
+        "created": "Image deleted successfully"
+      },
+      "errorResponses": {
+        "failed": "Image delete failed"
+      }
+    }
+  },
+  "user": {
+    "notFound": "User not found",
+    "validations": {
+      "email": {
+        "required": "Email is required",
+        "empty": "Email cannot be empty",
+        "invalid": "Email is invalid"
+      },
+      "firstName": {
+        "required": "Firstname is required",
+        "min": "Firstname cannot be less than {{charCount}} characters",
+        "max": "Firstname cannot be greater than {{charCount}} characters"
+      },
+      "lastName": {
+        "required": "Lastname is required",
+        "min": "Lastname cannot be less than {{charCount}} characters",
+        "max": "Lastname cannot be greater than {{charCount}} characters"
+      },
+      "phoneNumber": {
+        "required": "Phone number is required",
+        "min": "Invalid  phone number",
+        "max": "Invalid phone number"
+      }
+    }
+  },
+  "qrcode": {
+    "notFound": "User not found",
+    "validations": {
+      "qrCodeName": {
+        "required": "QR Code Name is required",
+        "empty": "QR Code Name cannot be empty",
+        "invalid": "QR Code Name is invalid"
+      },
+      "type": {
+        "required": "Type is required",
+        "min": "Type cannot be less than {{charCount}} characters",
+        "max": "Type cannot be greater than {{charCount}} characters"
+      },
+      "link": {
+        "required": "Link is required",
+        "min": "Link cannot be less than {{charCount}} characters",
+        "max": "Link cannot be greater than {{charCount}} characters"
+      },
+      "phoneNumber": {
+        "required": "Phone number is required",
+        "min": "Invalid  phone number",
+        "max": "Invalid phone number"
+      }
+    }
+  },
+  "webinarDetails": {
+    "notFound": "Details not found",
+    "validations": {
+      "barner": {
+        "required": "Barner is required",
+        "empty": "Barner cannot be empty"
+      },
+      "name": {
+        "required": "Name is required",
+        "empty": "Name cannot be empty"
+      },
+      "description": {
+        "required": "Description is required",
+        "empty": "Description cannot be empty"
+      },
+      "link": {
+        "required": "Link is required",
+        "empty": "Link cannot be empty"
+      },
+      "date": {
+        "required": "Date is required",
+        "empty": "Date cannot be empty"
+      },
+      "time": {
+        "required": "Time is required",
+        "empty": "Time cannot be empty"
+      },
+      "country": {
+        "empty": "Time cannot be empty"
+      }
+    }
+  },
+  "faq": {
+    "notFound": "FAQ not found",
+    "validations": {
+      "question": {
+        "required": "Faq question is required",
+        "empty": "Faq question cannot be empty"
+      },
+      "answer": {
+        "required": "Faq question is required",
+        "empty": "Faq question cannot be empty"
+      }
+    }
+  },
+  "paymentConfig": {
+    "responses": {
+      "create": {
+        "paymentConfigExists": "Payment config already exists",
+        "paymentConfigCreated": "Payment config created"
+      },
+      "setDefaultPayment": "Payment config updated",
+      "read": {
+        "paymentConfigNotFound": "Payment config not found"
+      }
+    },
+    "validations": {
+      "name": {
+        "required": "Name is required",
+        "empty": "Name cannot be empty",
+        "invalid": "Name is invalid"
+      },
+      "paymentConfigId": {
+        "required": "payment config id is required",
+        "empty": "payment config id cannot be empty",
+        "invalid": "patment config id is invalid"
+      },
+      "providerCode": {
+        "required": "provider code is required",
+        "empty": "provider code cannot be empty"
+      }
+    }
+  },
+  "payment": {
+    "responses": {
+      "initiatePayment": {
+        "initiatePaymentSuccessful": "Initiate payment successful",
+        "initiatePaymentFailed": "Initiate payment failed",
+        "resourceFetched": "Resource successfully fetched"
+      },
+      "verification": {
+        "verificationSuccessful": "Payment verification successful",
+        "paymentAlreadyVerified": "Payment already verified",
+        "paymentNotFound": "Payment not found"
+      },
+      "statistics": {
+        "resourcesFetched": "Resources Successfully Fetched"
+
+      },
+      "accountNumberVerification": {
+        "notFound": " account number not found, try again"
+      }
+    },
+    "validations": {
+      "amount": {
+        "required": "amount is required",
+        "empty": "amount cannot be empty"
+      },
+      "meta": {
+        "required": "meta is required"
+      },
+      "accountNumber": {
+        "required": "account number is required",
+        "empty": "account number cannot be empty",
+        "invalid": "invalid account number"
+      },
+      "bankCode": {
+        "required": "bank code is required",
+        "empty": "bank code cannot be empty"
+      },
+      "reference": {
+        "required": "Reference is required",
+        "empty": "Reference cannot be empty"
+      },
+      "paymentType": {
+        "required": "Payment type is required",
+        "empty": "Payment type cannot be empty"
+      }
+    }
+  },
+  "product": {
+    "category": {
+      "notFound": "Category not found",
+      "alreadyExists": "Category with the same name already exists."
+    }
+  },
+  "wallet": {
+    "responses": {
+      "getWalletBalance": {
+        "getWalletBalanceSuccess": "Wallet balance successful"
+      },
+      "debitWallet": {
+        "insufficientBalance": "Insufficient balance to perform transaction",
+        "debitWalletSuccessful": "Successfully debited wallet"
+      },
+      "getWallet": {
+        "walletNotFound": "Wallet not found",
+        "walletExists": "Wallet already exist"
+      },
+      "upcomingPayment": {
+        "notFound": "Upcoming payment not found"
+      },
+      "creditWallet": {
+        "creditWalletSuccessful": "Successfully credited wallet"
+      }
+    },
+    "validations": {
+      "amount": {
+        "required": "Amount is required",
+        "empty": "Amount can not be empty",
+        "postive": "invalid amount provided"
+      },
+      "pin": {
+        "required": "Pin is required",
+        "empty": "Pin can not be empty",
+        "invalid": "Pin is invalid",
+        "wrong": "Wrong wallet pin"
+      },
+      "bankName": {
+        "required": "Bank name is required",
+        "empty": "Bank name can not be empty"
+      },
+      "bankCode": {
+        "required": "Bank code is required",
+        "empty": "Bank code can not be empty",
+        "invalid": "Bank code is invalid"
+      },
+      "accountNumber": {
+        "required": "Account number is required",
+        "empty": "Account number can not be empty",
+        "invalid": "Account number is invalid"
+      }
+    }
+  },
+  "walletEntry": {
+    "responses": {
+      "getWalletEntry": {
+        "notFound": "Wallet entry not found"
+      }
+    }
+  },
+  "integration": {
+    "responses": {
+      "create": {
+        "alreadyExist": "Integration already exists"
+      },
+      "read": {
+        "notFound": "Integration not found"
+      }
+    },
+    "validations": {
+      "integrationTypeId": {
+        "required": "Integration type is required",
+        "empty": "Integration type is empty",
+        "invalid": "Integration type is invalid"
+      },
+      "vendorType": {
+        "required": "Vendor type is required",
+        "empty": "Vendor type is empty",
+        "invalid": "Vendor type is invalid"
+      }
+    },
+    "integrationType": {
+      "validations": {
+        "name": {
+          "required": "Name is required",
+          "empty": "Name can not be empty",
+          "invalid": "Name is invalid"
+        },
+        "description": {
+          "required": "Description is required",
+          "empty": "Description can not be empty",
+          "invalid": "Description is invalid"
+        }
+      }
+    }
+  },
+  "couponDiscount": {
+    "responses": {
+      "alreadyExists": "Coupon already exist",
+      "notFound": "Coupon discount not found",
+      "notEligible": "Not eligible.",
+      "expired": "Coupon expired."
+    },
+    "validations": {
+      "couponCode": {
+        "required": "Coupon code is required",
+        "empty": "Coupon code can not be empty",
+        "invalid": "Coupon code is invalid"
+      },
+      "usage": {
+        "required": "Usage is required",
+        "empty": "Usage can not be empty",
+        "invalid": "Usage is invalid"
+      },
+      "accountType": {
+        "required": "Account type is required",
+        "empty": "Account type can not be empty",
+        "invalid": "Account type is invalid"
+      },
+      "promoCodeUsageId": {
+        "required": "Promo code usage id is required",
+        "empty": "Promo code usage id can not be empty",
+        "invalid": "Promo code usage id is invalid"
+      },
+      "description": {
+        "required": "Description is required",
+        "empty": "Description can not be empty",
+        "invalid": "Description is invalid"
+      },
+      "type": {
+        "required": "Coupon type is required",
+        "empty": "Coupon type can not be empty",
+        "invalid": "Coupon type is invalid"
+      },
+      "startDate": {
+        "required": "Start date is required",
+        "empty": "Start date can not be empty",
+        "invalid": "Start date is invalid"
+      },
+      "endDate": {
+        "required": "End date is required",
+        "empty": "End date can not be empty",
+        "invalid": "End date is invalid"
+      },
+      "name": {
+        "required": "Name is required",
+        "empty": "Name can not be empty",
+        "invalid": "Name is invalid"
+      },
+      "discountInMinor": {
+        "required": "Discount is required",
+        "empty": "Discount can not be empty",
+        "invalid": "Discount is invalid"
+      },
+      "maxDiscountInMinor": {
+        "required": "Max discount is required",
+        "empty": "Max discount can not be empty",
+        "invalid": "Max discount is invalid"
+      },
+      "quantity": {
+        "required": "Quantity is required",
+        "empty": "Quantity can not be empty",
+        "invalid": "Quantity is invalid"
+      },
+      "status": {
+        "required": "Status is required",
+        "empty": "Status can not be empty",
+        "invalid": "Status is invalid"
+      },
+      "couponDiscountId": {
+        "required": "Coupon discount id is required",
+        "empty": "Coupon discount id cannot be empty",
+        "invalid": "Coupon discount id is invalid"
+      }
+    }
+  },
+  "server": {
+    "initialize": "{{appName}} has been initialize",
+    "started": "Express Server listening on port: {{port}}"
+  },
+  "emails": {
+    "employeeOnboarding": {
+      "title": "Business Invite",
+      "header": "Invitation to business",
+      "greeting": "Hello {{name}},",
+      "newUserGreeting": "Hello there,",
+      "acceptInvite": "Accept Invite",
+      "existingUserMessage": "You have been invited as an employee of the business {{businessName}} on storebridger. To accept this invitation and create your Storebridger account, please click on the button below.",
+      "newUserMessage": "You have been invited as an employee of the business {{businessName}} on storebridger. To ensure the security of your account and the accuracy of the information provided, we kindly ask you to verify your email address and complete your registration by clicking the verify button below",
+      "verifyEmail": "Verify Email",
+      "alternativeLinkNote": "In case you are unable to click the verification link directly, you can copy and paste the following URL into your web browser"
+    }
+  }
+}
+
