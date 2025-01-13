@@ -22,16 +22,14 @@ async function startServer(): Promise<void> {
 }
 
 async function initializeServer(): Promise<void> {
-  // Initialize the IoC container
   inversifyConfig();
 
-  // Initialize the database connection
   try {
     await SequelizeConnection.connect();
     logger.info('Database connection successfully established');
   } catch (err) {
     logger.error('Database connection failed:', err);
-    process.exit(1); // Exit the process if the database connection fails
+    process.exit(1);
   }
 
   // Configure the Express application

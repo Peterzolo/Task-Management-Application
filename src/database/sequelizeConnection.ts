@@ -1,12 +1,8 @@
 import { Sequelize } from 'sequelize';
-// import config from '../../../config'; // Updated to import the centralized config
-
 import config from '../config';
 import { logger } from '../library/helpers';
 
-const env = process.env.NODE_ENV || 'development'; // Determine the current environment
-
-// Retrieve the Sequelize configuration for the current environment
+const env = process.env.NODE_ENV || 'development';
 const sequelizeConfig = (config.db.sequelize as { [key: string]: any })[env];
 
 class SequelizeConnection {
@@ -22,7 +18,16 @@ class SequelizeConnection {
         {
           host: sequelizeConfig.host,
           dialect: sequelizeConfig.dialect as 'postgres',
-          logging: false, // Disable logging
+          logging: env === 'development' ? console.log : false, // Enable logging in development
+          pool: {
+            max: 10,
+            min: 0,
+            acquire: 30000,
+            idle: 10000,
+          },
+          retry: {
+            max: 3,
+          },
         },
       );
     }
@@ -40,11 +45,15 @@ class SequelizeConnection {
     }
   }
 
-  // Method to close the connection
   public static async disconnect(): Promise<void> {
-    const sequelize = SequelizeConnection.getInstance();
-    await sequelize.close();
-    logger.info('Database connection closed');
+    try {
+      const sequelize = SequelizeConnection.getInstance();
+      await sequelize.close();
+      logger.info('Database connection closed');
+    } catch (err) {
+      logger.error('Error while closing the database connection:', err);
+      throw err;
+    }
   }
 }
 
