@@ -30,6 +30,12 @@ const config = {
     productionBase: process.env.FRONTEND_BASE_PRODUCTION,
     oauthRedirect: process.env.FRONTEND_OAUTH_REDIRECT,
   },
+  tokenInfo: {
+    accessTokenValidityDays: Number(process.env.ACCESS_TOKEN_VALIDITY_DAYS),
+    refreshTokenValidityDays: Number(process.env.REFRESH_TOKEN_VALIDITY_DAYS),
+    issuer: process.env.TOKEN_ISSUER || '',
+    audience: process.env.TOKEN_AUDIENCE || '',
+  },
   db: {
     uri: process.env.DB_URI, // Existing MongoDB URI
     sequelize: {
