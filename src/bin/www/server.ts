@@ -5,6 +5,7 @@ import config from '../../config';
 import inversifyConfig from '../../ioc/inversify.config';
 import applicationConfig from '../../app/app';
 import { logger } from '../../library/helpers';
+import SequelizeConnection from '../../database/sequelizeConnection';
 
 async function startServer(): Promise<void> {
   try {
@@ -24,10 +25,17 @@ async function initializeServer(): Promise<void> {
   // Initialize the IoC container
   inversifyConfig();
 
+  // Initialize the database connection
+  try {
+    await SequelizeConnection.connect();
+    logger.info('Database connection successfully established');
+  } catch (err) {
+    logger.error('Database connection failed:', err);
+    process.exit(1); // Exit the process if the database connection fails
+  }
+
   // Configure the Express application
   const application: Application = applicationConfig();
-
-  // Initialize the database connection
 
   // Start the Express server
   application.listen(config.port, '0.0.0.0', () => {
