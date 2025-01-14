@@ -34,6 +34,9 @@ export const initializeAuthModel = (sequelize: Sequelize): void => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    name: {
+      type: DataTypes.STRING,
+    },
     createdAt: {
       type: DataTypes.DATE,
       allowNull: true,
