@@ -1,13 +1,13 @@
-import { Model, ModelStatic } from 'sequelize';
+import { Model, ModelStatic, WhereOptions } from 'sequelize';
 
 export abstract class BaseRepository<T extends Model> {
-  private model: ModelStatic<T>;
+  protected model: ModelStatic<T>; // Mark the model as protected to allow access in subclasses
 
   constructor(model: ModelStatic<T>) {
     this.model = model;
   }
 
-  async findAll(where: object = {}): Promise<T[]> {
+  async findAll(where: WhereOptions<T> = {}): Promise<T[]> {
     return this.model.findAll({ where });
   }
 
@@ -20,10 +20,12 @@ export abstract class BaseRepository<T extends Model> {
   }
 
   async update(id: string, data: Partial<T>): Promise<[number, T[]]> {
-    return this.model.update(data as any, { where: { id }, returning: true });
+    const whereClause: WhereOptions<T> = { id } as unknown as WhereOptions<T>;
+    return this.model.update(data, { where: whereClause, returning: true });
   }
 
   async delete(id: string): Promise<number> {
-    return this.model.destroy({ where: { id } });
+    const whereClause: WhereOptions<T> = { id } as unknown as WhereOptions<T>;
+    return this.model.destroy({ where: whereClause });
   }
 }
