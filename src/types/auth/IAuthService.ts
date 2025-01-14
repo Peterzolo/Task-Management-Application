@@ -23,5 +23,5 @@ export type IAuthService = {
 };
 
 export type IOnboardingService = {
-  singUp(signupPayload: ISignUp): Promise<Partial<IAuth>>;
+  signUp(signupPayload: ISignUp): Promise<Partial<IAuth>>;
 };
