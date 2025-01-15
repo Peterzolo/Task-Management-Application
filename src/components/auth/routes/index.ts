@@ -15,5 +15,6 @@ authRouter.get(
 );
 
 authRouter.post('/signup', validator(schema.signUp), tryCatcher(AuthController.signUp));
+authRouter.post('/login', validator(schema.login), tryCatcher(AuthController.signIn));
 
 export default authRouter;

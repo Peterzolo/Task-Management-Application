@@ -8,12 +8,8 @@ export class AuthController {
     return res.status(201).json(AuthPresenter.presentAuthResponse(result));
   }
 
-  // static async signIn(req: Request, res: Response): Promise<Response> {
-  //   try {
-  //     const result = await AuthService.signIn(req.body);
-  //     return res.status(200).json(AuthPresenter.presentAuthResponse(result));
-  //   } catch (error: any) {
-  //     return res.status(400).json({ error: error.message });
-  //   }
-  // }
+  static async signIn(req: Request, res: Response): Promise<Response> {
+    const result = await AuthService.signIn(req.body);
+    return res.status(200).json(AuthPresenter.presentAuthResponse(result));
+  }
 }
