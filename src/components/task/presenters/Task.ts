@@ -1,6 +1,6 @@
 import { TaskResponseData } from '../../../types/task';
 
-export class AuthPresenter {
+export class TaskPresenter {
   static taskPresenter(data: TaskResponseData) {
     return {
       id: data.id,

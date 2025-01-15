@@ -33,6 +33,7 @@ export interface UserPayload {
   id: string;
   email: string;
   role: string;
+  userId: string;
 }
 
 export interface RolePermissions {

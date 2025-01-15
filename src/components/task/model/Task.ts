@@ -1,9 +1,11 @@
 // Task.ts
 import { Model, DataTypes, Sequelize, ModelAttributes } from 'sequelize';
 import { ITask, TaskStatus } from '../../../types/task';
+import { Auth } from '../../auth/model/Auth';
 
 export class Task extends Model<ITask, Task> implements ITask {
   public id!: string;
+  public userId!: string;
   public title!: string;
   public description!: string;
   public dueDate!: string;
@@ -18,6 +20,14 @@ export const initializeTaskModel = (sequelize: Sequelize): void => {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
+    },
+    userId: {
+      type: DataTypes.UUID,
+      allowNull: false,
+      references: {
+        model: 'auths', // Table name for the User model
+        key: 'id', // Key in the User table being referenced
+      },
     },
     title: {
       type: DataTypes.STRING,
@@ -47,4 +57,5 @@ export const initializeTaskModel = (sequelize: Sequelize): void => {
     tableName: 'tasks',
     timestamps: true,
   });
+  Task.belongsTo(Auth, { foreignKey: 'userId', as: 'creator' });
 };

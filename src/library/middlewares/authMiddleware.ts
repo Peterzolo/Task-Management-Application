@@ -1,15 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import { BadRequestError } from '../helpers';
-import { RolePermissions, UserPayload } from '../../types/auth/IAuth';
+import { RolePermissions } from '../../types/auth/IAuth';
 
-declare module 'express-serve-static-core' {
-  interface Request {
-    user?: UserPayload;
-  }
-}
-
-// Define the role permissions for each role
 export const rolePermissions: RolePermissions = {
   admin: ['create_tasks', 'update_tasks', 'delete_tasks', 'view_tasks'],
   manager: ['create_tasks', 'update_tasks', 'view_tasks'],
@@ -24,20 +17,24 @@ export const verifyToken = (req: Request, res: Response, next: NextFunction): vo
   }
 
   try {
-    // Decode the token and attach the full payload to req.user
     const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as {
       id: string;
       email: string;
       role: string;
     };
-    req.user = decoded as any; // Attach the decoded payload (including role) to req.user
+
+    req.user = {
+      id: decoded.id,
+      email: decoded.email,
+      role: decoded.role,
+    }; // Attach the decoded payload to req.user
+
     next();
   } catch (error) {
     throw new BadRequestError('Invalid token');
   }
 };
 
-// Middleware to check if the user has specific permissions
 export const hasPermission = (permission: string) => {
   return (req: Request, res: Response, next: NextFunction): void => {
     const userRole = req.user?.role;

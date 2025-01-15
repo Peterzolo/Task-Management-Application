@@ -1,13 +1,13 @@
 import { TaskRepository } from '../repositories/Task';
 
-import { ICreateTask } from '../../../types/task';
-import { BadRequestError } from '../../../library/helpers';
+import { ICreateTask, ITask, TaskResponseData } from '../../../types/task';
+import { BadRequestError, NotFoundError } from '../../../library/helpers';
+import { TaskPresenter } from '../presenters/Task';
 
 export class TaskService {
-  static async createNewTask(data: ICreateTask): Promise<ICreateTask> {
-    const { title, description, dueDate } = data;
+  static async createNewTask(data: ICreateTask): Promise<Partial<ITask>> {
+    const { title, description, dueDate, userId } = data;
 
-    // Check if a task with the same title and dueDate already exists
     const existingTask = await TaskRepository.findTaskByTitle(title);
 
     if (existingTask) {
@@ -20,6 +20,51 @@ export class TaskService {
       dueDate,
     });
 
-    return { title: task.title, description: task.description, dueDate: task.dueDate };
+    return TaskPresenter.taskPresenter({
+      id: task.id,
+      title: task.title,
+      description: task.description,
+      dueDate: task.dueDate,
+      userId,
+      status: task.status,
+    } as TaskResponseData);
+  }
+
+  // Fetch all tasks
+  static async getAllTasks(): Promise<Partial<ITask>[]> {
+    const tasks = await TaskRepository.getAllTasks();
+
+    if (tasks.length === 0) {
+      throw new NotFoundError('No tasks found');
+    }
+
+    // Use the presenter to format each task
+    return tasks.map((task) =>
+      TaskPresenter.taskPresenter({
+        id: task.id,
+        title: task.title,
+        description: task.description,
+        dueDate: task.dueDate,
+        status: task.status,
+      } as TaskResponseData),
+    );
+  }
+
+  // Fetch a task by ID
+  static async getTaskById(taskId: string): Promise<Partial<ITask>> {
+    const task = await TaskRepository.getTaskById(taskId);
+
+    if (!task) {
+      throw new NotFoundError(`Task with ID ${taskId} not found`);
+    }
+
+    // Use the presenter to format the response
+    return TaskPresenter.taskPresenter({
+      id: task.id,
+      title: task.title,
+      description: task.description,
+      dueDate: task.dueDate,
+      status: task.status,
+    } as TaskResponseData);
   }
 }
