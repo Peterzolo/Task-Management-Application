@@ -3,6 +3,7 @@ import { SuccessResponse, tryCatcher } from '../../../library/helpers';
 import schema from './schemas';
 import validator from '../../../library/middlewares/sanitizer';
 import { TaskController } from '../controller/TaskController';
+import { isAdmin, verifyToken } from '../../../library/middlewares/authMiddleware';
 
 const taskRouter = Router();
 
@@ -14,6 +15,12 @@ taskRouter.get(
   }),
 );
 
-taskRouter.post('/create', validator(schema.createTask), tryCatcher(TaskController.postCreateTask));
+taskRouter.post(
+  '/create',
+  verifyToken,
+  isAdmin,
+  validator(schema.createTask),
+  tryCatcher(TaskController.postCreateTask),
+);
 
 export default taskRouter;
