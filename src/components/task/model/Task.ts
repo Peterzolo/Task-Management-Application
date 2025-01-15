@@ -23,10 +23,10 @@ export const initializeTaskModel = (sequelize: Sequelize): void => {
     },
     userId: {
       type: DataTypes.UUID,
-      allowNull: false,
+      allowNull: true,
       references: {
-        model: 'auths', // Table name for the User model
-        key: 'id', // Key in the User table being referenced
+        model: 'auths',
+        key: 'id',
       },
     },
     title: {

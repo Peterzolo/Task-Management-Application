@@ -6,7 +6,7 @@ import { RolePermissions } from '../../types/auth/IAuth';
 export const rolePermissions: RolePermissions = {
   admin: ['create_tasks', 'update_tasks', 'delete_tasks', 'view_tasks'],
   manager: ['create_tasks', 'update_tasks', 'view_tasks'],
-  user: ['view_tasks'],
+  user: ['view_tasks', 'create_tasks'],
 };
 
 export const verifyToken = (req: Request, res: Response, next: NextFunction): void => {

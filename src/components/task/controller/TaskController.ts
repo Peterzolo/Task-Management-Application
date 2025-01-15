@@ -16,4 +16,23 @@ export class TaskController {
     // Return the response with the task data presented
     return res.status(201).json(TaskPresenter.taskPresenter(result));
   }
+
+  // Fetch all tasks
+  static async getAllTasks(req: Request, res: Response): Promise<Response> {
+    const tasks = await TaskService.getAllTasks();
+
+    const formattedTasks = tasks.map((task) => TaskPresenter.taskPresenter(task));
+
+    return res.status(200).json(formattedTasks);
+  }
+
+  static async getTaskById(req: Request, res: Response): Promise<Response> {
+    const { taskId } = req.params;
+
+    const task = await TaskService.getTaskById(taskId);
+
+    const taskResponse = TaskPresenter.taskPresenter(task);
+
+    return res.status(200).json(taskResponse);
+  }
 }

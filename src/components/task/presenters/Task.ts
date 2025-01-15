@@ -7,6 +7,7 @@ export class TaskPresenter {
       title: data.title,
       description: data.description,
       dueDate: data.dueDate,
+      userId: data.userId,
       status: data.status,
     };
   }

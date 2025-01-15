@@ -18,6 +18,7 @@ export class TaskService {
       title,
       description,
       dueDate,
+      userId,
     });
 
     return TaskPresenter.taskPresenter({
@@ -25,7 +26,7 @@ export class TaskService {
       title: task.title,
       description: task.description,
       dueDate: task.dueDate,
-      userId,
+      userId: task.userId,
       status: task.status,
     } as TaskResponseData);
   }
@@ -57,8 +58,6 @@ export class TaskService {
     if (!task) {
       throw new NotFoundError(`Task with ID ${taskId} not found`);
     }
-
-    // Use the presenter to format the response
     return TaskPresenter.taskPresenter({
       id: task.id,
       title: task.title,
