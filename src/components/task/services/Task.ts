@@ -97,7 +97,7 @@ export class TaskService {
   static async getAllFilteredTasks(query: {
     status?: string;
     dueDate?: string;
-    sortBy?: 'creationDate' | 'dueDate';
+    sortBy?: 'createdAt' | 'dueDate';
     order?: 'asc' | 'desc';
     page?: number;
     limit?: number;

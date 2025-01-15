@@ -72,7 +72,7 @@ export class TaskController {
     const query = {
       status: status as string,
       dueDate: dueDate as string,
-      sortBy: sortBy as 'creationDate' | 'dueDate',
+      sortBy: sortBy as 'createdAt' | 'dueDate',
       order: order as 'asc' | 'desc',
       page: page ? parseInt(page as string, 10) : undefined,
       limit: limit ? parseInt(limit as string, 10) : undefined,

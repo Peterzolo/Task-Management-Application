@@ -127,12 +127,12 @@ export class TaskRepository {
   static async getFilteredTasks(query: {
     status?: string;
     dueDate?: string;
-    sortBy?: 'creationDate' | 'dueDate';
+    sortBy?: 'createdAt' | 'dueDate';
     order?: 'asc' | 'desc';
     page?: number;
     limit?: number;
   }): Promise<{ rows: Task[]; count: number }> {
-    const { status, dueDate, sortBy = 'creationDate', order = 'desc', page = 1, limit = 10 } = query;
+    const { status, dueDate, sortBy = 'createdAt', order = 'desc', page = 1, limit = 10 } = query;
 
     const whereClause: any = {};
 
