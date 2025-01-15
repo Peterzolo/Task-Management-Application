@@ -27,5 +27,11 @@ taskRouter.get('/user-tasks', verifyToken, tryCatcher(TaskController.getUserTask
 taskRouter.get('/user-tasks', verifyToken, tryCatcher(TaskController.getUserTasks));
 taskRouter.put('/update/:id', verifyToken, tryCatcher(TaskController.updateTask));
 taskRouter.delete('/delete/:id', verifyToken, hasPermission('delete_tasks'), tryCatcher(TaskController.deleteTask));
+taskRouter.get(
+  '/get-filtered-tasks',
+  verifyToken,
+  hasPermission('view_tasks'),
+  tryCatcher(TaskController.getFilteredTasks),
+);
 
 export default taskRouter;

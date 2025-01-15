@@ -93,4 +93,31 @@ export class TaskService {
 
     return true;
   }
+
+  static async getAllFilteredTasks(query: {
+    status?: string;
+    dueDate?: string;
+    sortBy?: 'creationDate' | 'dueDate';
+    order?: 'asc' | 'desc';
+    page?: number;
+    limit?: number;
+  }): Promise<{ tasks: Partial<ITask>[]; total: number; page: number; limit: number }> {
+    const { rows, count } = await TaskRepository.getFilteredTasks(query);
+
+    if (rows.length === 0) {
+      throw new NotFoundError('No tasks found');
+    }
+
+    const tasks = rows.map((task) =>
+      TaskPresenter.taskPresenter({
+        id: task.id,
+        title: task.title,
+        description: task.description,
+        dueDate: task.dueDate,
+        status: task.status,
+      } as TaskResponseData),
+    );
+
+    return { tasks, total: count, page: query.page || 1, limit: query.limit || 10 };
+  }
 }

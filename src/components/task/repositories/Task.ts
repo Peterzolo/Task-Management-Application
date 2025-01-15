@@ -1,3 +1,4 @@
+import { Op } from 'sequelize';
 import { BadRequestError } from '../../../library/helpers';
 import { Task } from '../model/Task';
 
@@ -22,23 +23,6 @@ export class TaskRepository {
         title,
       },
     });
-  }
-
-  static async findTaskById(id: string): Promise<Task | null> {
-    try {
-      // Find a task by its ID
-      return await Task.findOne({
-        where: {
-          id,
-        },
-      });
-    } catch (error) {
-      if (error instanceof Error) {
-        throw new Error('Error finding task by ID: ' + error.message);
-      } else {
-        throw new Error('Error finding task by ID');
-      }
-    }
   }
 
   static async updateTask(id: string, data: Partial<Task>, userId: string): Promise<Task | null> {
@@ -138,5 +122,35 @@ export class TaskRepository {
         throw new Error('Error finding tasks by user ID');
       }
     }
+  }
+
+  static async getFilteredTasks(query: {
+    status?: string;
+    dueDate?: string;
+    sortBy?: 'creationDate' | 'dueDate';
+    order?: 'asc' | 'desc';
+    page?: number;
+    limit?: number;
+  }): Promise<{ rows: Task[]; count: number }> {
+    const { status, dueDate, sortBy = 'creationDate', order = 'desc', page = 1, limit = 10 } = query;
+
+    const whereClause: any = {};
+
+    if (status) {
+      whereClause.status = status;
+    }
+
+    if (dueDate) {
+      whereClause.dueDate = { [Op.eq]: dueDate };
+    }
+
+    const offset = (page - 1) * limit;
+
+    return await Task.findAndCountAll({
+      where: whereClause,
+      order: [[sortBy, order]],
+      limit,
+      offset,
+    });
   }
 }

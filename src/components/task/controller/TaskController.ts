@@ -66,4 +66,19 @@ export class TaskController {
 
     return res.status(404).json({ message: 'Task not found' });
   }
+
+  static async getFilteredTasks(req: Request, res: Response): Promise<Response> {
+    const { status, dueDate, sortBy, order, page, limit } = req.query;
+    const query = {
+      status: status as string,
+      dueDate: dueDate as string,
+      sortBy: sortBy as 'creationDate' | 'dueDate',
+      order: order as 'asc' | 'desc',
+      page: page ? parseInt(page as string, 10) : undefined,
+      limit: limit ? parseInt(limit as string, 10) : undefined,
+    };
+    const result = await TaskService.getAllFilteredTasks(query);
+
+    return res.status(200).json(result);
+  }
 }
