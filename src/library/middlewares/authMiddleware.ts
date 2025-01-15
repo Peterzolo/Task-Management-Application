@@ -4,9 +4,9 @@ import { BadRequestError } from '../helpers';
 import { RolePermissions } from '../../types/auth/IAuth';
 
 export const rolePermissions: RolePermissions = {
-  admin: ['create_tasks', 'update_tasks', 'delete_tasks', 'view_tasks'],
-  manager: ['create_tasks', 'update_tasks', 'view_tasks'],
-  user: ['create_tasks'],
+  admin: ['create_tasks', 'delete_tasks', 'view_tasks'],
+  manager: ['create_tasks', 'view_tasks'],
+  user: ['create_tasks', 'delete_tasks'],
 };
 
 export const verifyToken = (req: Request, res: Response, next: NextFunction): void => {
