@@ -1,20 +1,21 @@
 import { Request, Response, NextFunction } from 'express';
-
-interface UserPayload {
-  id: string;
-  email: string;
-  role: string;
-}
+import jwt from 'jsonwebtoken';
+import { BadRequestError } from '../helpers';
+import { RolePermissions, UserPayload } from '../../types/auth/IAuth';
 
 declare module 'express-serve-static-core' {
   interface Request {
     user?: UserPayload;
   }
 }
-import jwt from 'jsonwebtoken';
-import { BadRequestError } from '../helpers';
 
-// Middleware to verify JWT token and extract user info
+// Define the role permissions for each role
+export const rolePermissions: RolePermissions = {
+  admin: ['create_tasks', 'update_tasks', 'delete_tasks', 'view_tasks'],
+  manager: ['create_tasks', 'update_tasks', 'view_tasks'],
+  user: ['view_tasks'],
+};
+
 export const verifyToken = (req: Request, res: Response, next: NextFunction): void => {
   const token = req.header('Authorization')?.replace('Bearer ', ''); // Get token from header
 
@@ -36,9 +37,33 @@ export const verifyToken = (req: Request, res: Response, next: NextFunction): vo
   }
 };
 
+// Middleware to check if the user has specific permissions
+export const hasPermission = (permission: string) => {
+  return (req: Request, res: Response, next: NextFunction): void => {
+    const userRole = req.user?.role;
+
+    if (!userRole || !rolePermissions[userRole]) {
+      return next(new BadRequestError('Forbidden: Role not recognized'));
+    }
+    if (!rolePermissions[userRole].includes(permission)) {
+      return next(new BadRequestError('Forbidden: You do not have the required permission'));
+    }
+
+    next();
+  };
+};
+
 // Middleware to check if the user is an admin
 export const isAdmin = (req: Request, res: Response, next: NextFunction): void => {
   if (!req.user || req.user.role !== 'admin') {
+    throw new BadRequestError('You are not authorized to access this resource');
+  }
+  next();
+};
+
+// Middleware to check if the user is a manager
+export const isManager = (req: Request, res: Response, next: NextFunction): void => {
+  if (!req.user || req.user.role !== 'manager') {
     throw new BadRequestError('You are not authorized to access this resource');
   }
   next();
@@ -50,4 +75,24 @@ export const isUser = (req: Request, res: Response, next: NextFunction): void =>
     throw new BadRequestError('User is not authenticated');
   }
   next();
+};
+
+// Middleware to check if the user has multiple permissions
+export const hasMultiplePermissions = (permissions: string[]) => {
+  return (req: Request, res: Response, next: NextFunction): void => {
+    const userRole = req.user?.role;
+
+    if (!userRole || !rolePermissions[userRole]) {
+      return next(new BadRequestError('Forbidden: Role not recognized'));
+    }
+
+    // Check if the user has any of the required permissions
+    const hasPermission = permissions.some((permission) => rolePermissions[userRole].includes(permission));
+
+    if (!hasPermission) {
+      return next(new BadRequestError('Forbidden: You do not have the required permission'));
+    }
+
+    next();
+  };
 };

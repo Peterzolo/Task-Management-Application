@@ -28,3 +28,13 @@ export interface IAuth {
   createdAt?: Date;
   updatedAt?: Date;
 }
+
+export interface UserPayload {
+  id: string;
+  email: string;
+  role: string;
+}
+
+export interface RolePermissions {
+  [key: string]: string[];
+}
