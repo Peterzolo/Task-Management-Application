@@ -1,11 +1,30 @@
-import { Model } from 'sequelize';
-
-export interface IAuth extends Model<IAuth> {
-  id?: string;
-  email?: string;
+export interface SignUpDto {
+  email: string;
+  password: string;
+  role: string;
   name?: string;
-  password?: string;
-  role?: string;
+}
+
+export interface SignInDto {
+  email: string;
+  password: string;
+}
+
+export interface AuthResponseDto {
+  id?: string;
+  email: string;
+  role: string;
+  token: string;
+  name: string;
+}
+
+// IAuth.ts
+export interface IAuth {
+  id?: string;
+  email: string;
+  password: string;
+  role: string;
+  name?: string | null;
   createdAt?: Date;
   updatedAt?: Date;
 }

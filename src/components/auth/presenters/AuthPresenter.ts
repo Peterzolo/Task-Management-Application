@@ -1,21 +1,13 @@
-import _ from 'lodash';
-import { injectable } from 'inversify';
-import { IAuthPresenter } from '../../../types/auth/IAuthPresenter';
-import { IAuth } from '../../../types/auth/IAuth';
+import { AuthResponseDto } from '../../../types/auth/IAuth';
 
-export const AUTH_PRESENTER = Symbol('AuthPresenter');
-
-@injectable()
-export class AuthPresenter implements IAuthPresenter {
-  public serialize(authDocument: IAuth, selectors: Array<keyof IAuth> = ['email']): Partial<IAuth> {
-    const authEntity = {
-      id: authDocument.id,
-      email: authDocument.email,
-      password: authDocument.password,
-      role: authDocument.role,
-      createdAt: authDocument.createdAt,
+export class AuthPresenter {
+  static presentAuthResponse(data: AuthResponseDto) {
+    return {
+      id: data.id,
+      email: data.email,
+      role: data.role,
+      name: data.name,
+      token: data.token,
     };
-
-    return _.pick(authEntity, selectors);
   }
 }

@@ -1,44 +1,32 @@
-import { inject, injectable } from 'inversify';
-import { AUTH_DTO } from '../dtos';
-import { AUTH_PRESENTER } from '../presenters';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import { AuthResponseDto, SignUpDto } from '../../../types/auth/IAuth';
+import { AuthRepository } from '../repositories/AuthRepository';
 
-import { logger, NotFoundError } from '../../../library/helpers';
-
-import { IOnboardingService } from '../../../types/auth/IAuthService';
-import { AuthBaseService } from './AuthBaseService';
-
-import { IAuthDTO, ISignUp } from '../../../types/auth/IAuthDTO';
-import { AUTH_REPOSITORY } from '../authRepository/AuthRepository';
-import { IAuthPresenter } from '../../../types/auth/IAuthPresenter';
-import { IAuthRepository } from '../../../types/auth/IAuthRepository';
-import { IAuth } from '../../../types/auth/IAuth';
-
-export const ONBOARDING_SERVICE = Symbol('OnboardingService');
-
-@injectable()
-export class OnboardingService extends AuthBaseService implements IOnboardingService {
-  public constructor(
-    @inject(AUTH_DTO) private readonly authDTO: IAuthDTO,
-    @inject(AUTH_PRESENTER) private readonly authPresenter: IAuthPresenter,
-    @inject(AUTH_REPOSITORY) protected readonly authRepository: IAuthRepository,
-  ) {
-    super(authRepository);
+export class AuthService {
+  private static generateToken(payload: object): string {
+    return jwt.sign(payload, process.env.JWT_SECRET as string, { expiresIn: '1h' });
   }
-  // Guest Signup
 
-  public async signUp(signupPayload: ISignUp): Promise<Partial<IAuth>> {
-    const auth = await this.findAuth({ email: signupPayload.email });
+  static async signUp(data: SignUpDto): Promise<AuthResponseDto> {
+    const { email, password, role, name } = data;
 
-    if (!auth) throw new NotFoundError('Auth Not Found');
+    const existingUser = await AuthRepository.findByEmail(email);
+    if (existingUser) {
+      throw new Error('User already exists with this email.');
+    }
 
-    const dto = this.authDTO.signUp({ ...signupPayload });
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-    const newAuth = await this.authRepository.create(dto);
+    const user = await AuthRepository.createUser({
+      email,
+      password: hashedPassword,
+      role,
+      name,
+    });
 
-    logger.info(`complete signup updated user auth`);
+    const token = this.generateToken({ id: user.id, email: user.email, role: user.role });
 
-    logger.info('Update the user stat to active');
-
-    return this.authPresenter.serialize(newAuth as IAuth, ['email', 'name', 'role']);
+    return { email: user.email, role: user.role, name: user.name || '', token };
   }
 }

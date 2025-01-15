@@ -1,11 +1,14 @@
+// Auth.ts
 import { Model, DataTypes, Sequelize, ModelAttributes } from 'sequelize';
-import { IAuth } from '../../../types/auth/IAuth'; // Adjust the import path if necessary
+import { IAuth } from '../../../types/auth/IAuth';
 
-export class Auth extends Model<IAuth> implements IAuth {
-  public id!: string; // Primary key
+// This defines the Auth model class which extends Sequelize's Model class
+export class Auth extends Model<IAuth, Auth> implements IAuth {
+  public id!: string;
   public email!: string;
   public password!: string;
   public role!: string;
+  public name!: string | null;
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
 }
@@ -36,23 +39,14 @@ export const initializeAuthModel = (sequelize: Sequelize): void => {
     },
     name: {
       type: DataTypes.STRING,
-    },
-    createdAt: {
-      type: DataTypes.DATE,
       allowNull: true,
-      defaultValue: Sequelize.fn('NOW'),
-    },
-    updatedAt: {
-      type: DataTypes.DATE,
-      allowNull: true,
-      defaultValue: Sequelize.fn('NOW'),
     },
   };
 
   Auth.init(attributes, {
     sequelize,
     modelName: 'Auth',
-    tableName: 'auths', // The table name in your database
-    timestamps: true, // Automatically add createdAt and updatedAt
+    tableName: 'auths',
+    timestamps: true,
   });
 };

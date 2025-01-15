@@ -1,18 +1,19 @@
 import { Request, Response } from 'express';
-import { ONBOARDING_SERVICE } from '../services';
-import inversifyContainer from '../../../ioc/inversify.config';
-import { SuccessResponse } from '../../../library/helpers';
-import { IOnboardingService } from '../../../types/auth/IAuthService';
+import { AuthService } from '../services/OnboardingService';
+import { AuthPresenter } from '../presenters/AuthPresenter';
 
-const container = inversifyContainer();
-const onboardingService = container.get<IOnboardingService>(ONBOARDING_SERVICE);
-
-class OnboardingController {
-  public async postCompleteSignup(req: Request, res: Response): Promise<Response<unknown, Record<string, unknown>>> {
-    const outcome = await onboardingService.signUp(req.body);
-
-    return new SuccessResponse('Sign up successful', outcome).send(res);
+export class AuthController {
+  static async signUp(req: Request, res: Response): Promise<Response> {
+    const result = await AuthService.signUp(req.body);
+    return res.status(201).json(AuthPresenter.presentAuthResponse(result));
   }
-}
 
-export default new OnboardingController();
+  // static async signIn(req: Request, res: Response): Promise<Response> {
+  //   try {
+  //     const result = await AuthService.signIn(req.body);
+  //     return res.status(200).json(AuthPresenter.presentAuthResponse(result));
+  //   } catch (error: any) {
+  //     return res.status(400).json({ error: error.message });
+  //   }
+  // }
+}
