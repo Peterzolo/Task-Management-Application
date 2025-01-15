@@ -38,4 +38,32 @@ export class TaskController {
 
     return res.status(200).json(formattedTasks);
   }
+
+  // Update a task by its ID
+  static async updateTask(req: Request, res: Response): Promise<Response> {
+    const { id } = req.params;
+    const userId = req.user?.id;
+    const { title, description, dueDate, status } = req.body;
+    if (!userId) {
+      return res.status(400).json({ message: 'User ID is required' });
+    }
+    const updatedTask = await TaskService.updateTask(id, { title, description, dueDate, status }, userId);
+    return res.status(200).json(updatedTask);
+  }
+
+  static async deleteTask(req: Request, res: Response): Promise<Response> {
+    const { id } = req.params;
+
+    if (!id) {
+      return res.status(400).json({ message: 'Task ID is required' });
+    }
+
+    const isDeleted = await TaskService.deleteTask(id);
+
+    if (isDeleted) {
+      return res.status(200).json({ message: 'Task deleted successfully' });
+    }
+
+    return res.status(404).json({ message: 'Task not found' });
+  }
 }

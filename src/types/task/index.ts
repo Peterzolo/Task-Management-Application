@@ -4,6 +4,13 @@ export interface ICreateTask {
   description: string;
   dueDate?: string;
 }
+export interface IUpdateTask {
+  title: string;
+  userId?: string;
+  description?: string;
+  dueDate?: string;
+  status?: TaskStatus;
+}
 
 export interface IReadTask {
   id?: string;

@@ -1,3 +1,4 @@
+import { BadRequestError } from '../../../library/helpers';
 import { Task } from '../model/Task';
 
 export class TaskRepository {
@@ -40,18 +41,18 @@ export class TaskRepository {
     }
   }
 
-  // Update a task by its ID
-  static async updateTask(id: string, data: Partial<Task>): Promise<Task | null> {
+  static async updateTask(id: string, data: Partial<Task>, userId: string): Promise<Task | null> {
     try {
-      // Find the task to update
+      // Find the task by ID and verify ownership
       const task = await Task.findOne({
         where: {
           id,
+          userId, // Ensure the task belongs to the user
         },
       });
 
       if (!task) {
-        throw new Error('Task not found');
+        throw new BadRequestError('Task not found or you are not authorized to update this task');
       }
 
       // Update the task with the new data
@@ -80,9 +81,8 @@ export class TaskRepository {
         throw new Error('Task not found');
       }
 
-      // Delete the task
       await task.destroy();
-      return true; // Return true if deletion was successful
+      return true;
     } catch (error) {
       if (error instanceof Error) {
         throw new Error('Error deleting task: ' + error.message);
