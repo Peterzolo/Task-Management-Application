@@ -1,7 +1,7 @@
 export interface ICreateTask {
   title: string;
   description: string;
-  dueDate: string;
+  dueDate?: string;
 }
 
 export interface IReadTask {
@@ -9,12 +9,21 @@ export interface IReadTask {
   status: string;
 }
 
+export interface TaskResponseData {
+  id?: string;
+  title?: string;
+  description?: string;
+  dueDate?: string;
+  status?: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
 export interface ITask {
   id?: string;
-  title: string;
-  description: string;
-  dueDate: string;
-  status: string;
+  title?: string;
+  description?: string;
+  dueDate?: string;
+  status?: string;
   createdAt?: Date;
   updatedAt?: Date;
 }

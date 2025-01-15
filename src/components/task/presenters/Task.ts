@@ -1,13 +1,13 @@
-import { AuthResponseDto } from '../../../types/auth/IAuth';
+import { TaskResponseData } from '../../../types/task';
 
 export class AuthPresenter {
-  static presentAuthResponse(data: AuthResponseDto) {
+  static taskPresenter(data: TaskResponseData) {
     return {
       id: data.id,
-      email: data.email,
-      role: data.role,
-      name: data.name,
-      token: data.token,
+      title: data.title,
+      description: data.description,
+      dueDate: data.dueDate,
+      status: data.status,
     };
   }
 }

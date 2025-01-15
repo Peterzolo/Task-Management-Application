@@ -2,11 +2,11 @@ import { Request, Response, Router } from 'express';
 import { SuccessResponse, tryCatcher } from '../../../library/helpers';
 import schema from './schemas';
 import validator from '../../../library/middlewares/sanitizer';
-import { AuthController } from '../controller/OnboardingController';
+import { TaskController } from '../controller/TaskController';
 
-const authRouter = Router();
+const taskRouter = Router();
 
-authRouter.get(
+taskRouter.get(
   '/health',
   tryCatcher(async (_req: Request, res: Response): Promise<Response<unknown, Record<string, unknown>>> => {
     const outcome = { msg: `Auth module working on ${process.env.APP_NAME}` };
@@ -14,7 +14,6 @@ authRouter.get(
   }),
 );
 
-authRouter.post('/signup', validator(schema.signUp), tryCatcher(AuthController.signUp));
-authRouter.post('/login', validator(schema.login), tryCatcher(AuthController.signIn));
+taskRouter.post('/create', validator(schema.createTask), tryCatcher(TaskController.postCreateTask));
 
-export default authRouter;
+export default taskRouter;

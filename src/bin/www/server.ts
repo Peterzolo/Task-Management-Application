@@ -6,6 +6,7 @@ import applicationConfig from '../../app/app';
 import { logger } from '../../library/helpers';
 import SequelizeConnection from '../../database/sequelizeConnection';
 import { initializeAuthModel } from '../../components/auth/model';
+import { initializeTaskModel } from '../../components/task/model/Task';
 
 async function startServer(): Promise<void> {
   try {
@@ -30,6 +31,7 @@ async function initializeServer(): Promise<void> {
     // Step 2: Initialize models
     const sequelize = SequelizeConnection.getInstance();
     initializeAuthModel(sequelize);
+    initializeTaskModel(sequelize);
 
     // Step 3: Synchronize models with the database
     await SequelizeConnection.syncModels();

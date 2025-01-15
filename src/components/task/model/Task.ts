@@ -28,7 +28,7 @@ export const initializeTaskModel = (sequelize: Sequelize): void => {
       allowNull: false,
     },
     dueDate: {
-      type: DataTypes.STRING, // Use STRING for date, or DataTypes.DATE if preferred
+      type: DataTypes.STRING,
       allowNull: false,
     },
     status: {

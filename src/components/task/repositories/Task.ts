@@ -1,23 +1,10 @@
-import { Auth } from '../model/Task';
+import { Task } from '../model/Task';
 
-export class AuthRepository {
-  static async createUser(data: Partial<Auth>): Promise<Auth> {
-    // Validate required fields
-    if (!data.email || !data.password || !data.role) {
-      throw new Error('Missing required fields: email, password, or role');
-    }
-
-    // Ensure valid data.id type if present (UUID)
-    if (data.id && typeof data.id !== 'string') {
-      throw new Error('Invalid id type');
-    }
-
+export class TaskRepository {
+  static async createTask(data: Partial<Task>): Promise<Task> {
     try {
-      // Log the incoming data for debugging
-      console.log('REPOSITORY LOG DATA', data);
-
       // Create the user in the database
-      return await Auth.create(data as Auth);
+      return await Task.create(data as Task);
     } catch (error) {
       if (error instanceof Error) {
         throw new Error('Error creating user: ' + error.message);
@@ -27,7 +14,12 @@ export class AuthRepository {
     }
   }
 
-  static async findByEmail(email: string): Promise<Auth | null> {
-    return await Auth.findOne({ where: { email } });
+  static async findTaskByTitle(title: string): Promise<Task | null> {
+    // Search for a task with the same title and due date
+    return Task.findOne({
+      where: {
+        title,
+      },
+    });
   }
 }
