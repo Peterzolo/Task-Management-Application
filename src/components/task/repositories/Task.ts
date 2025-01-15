@@ -107,12 +107,12 @@ export class TaskRepository {
   }
 
   // Fetch one task by ID
-  static async getTaskById(id: string): Promise<Task | null> {
+  static async getTaskUserId(userId: string): Promise<Task | null> {
     try {
       // Fetch a task by its ID
       return await Task.findOne({
         where: {
-          id,
+          userId,
         },
       });
     } catch (error) {
@@ -120,6 +120,22 @@ export class TaskRepository {
         throw new Error('Error fetching task by ID: ' + error.message);
       } else {
         throw new Error('Error fetching task by ID');
+      }
+    }
+  }
+
+  static async findTasksByUserId(userId: string): Promise<Task[]> {
+    try {
+      return await Task.findAll({
+        where: {
+          userId,
+        },
+      });
+    } catch (error) {
+      if (error instanceof Error) {
+        throw new Error('Error finding tasks by user ID: ' + error.message);
+      } else {
+        throw new Error('Error finding tasks by user ID');
       }
     }
   }

@@ -22,5 +22,7 @@ taskRouter.post(
   validator(schema.createTask),
   tryCatcher(TaskController.postCreateTask),
 );
+taskRouter.get('/get-all', verifyToken, hasPermission('view_tasks'), tryCatcher(TaskController.getAllTasks));
+taskRouter.get('/user-tasks', verifyToken, tryCatcher(TaskController.getUserTasks));
 
 export default taskRouter;

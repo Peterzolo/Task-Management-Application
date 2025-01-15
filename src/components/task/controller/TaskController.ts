@@ -25,14 +25,17 @@ export class TaskController {
 
     return res.status(200).json(formattedTasks);
   }
+  // Fetch user's own tyaks
+  static async getUserTasks(req: Request, res: Response): Promise<Response> {
+    const userId = req.user?.id;
 
-  static async getTaskById(req: Request, res: Response): Promise<Response> {
-    const { taskId } = req.params;
+    if (!userId) {
+      return res.status(400).json({ message: 'User ID is required' });
+    }
 
-    const task = await TaskService.getTaskById(taskId);
+    const tasks = await TaskService.getAllUserTasks(userId);
+    const formattedTasks = tasks.map((task) => TaskPresenter.taskPresenter(task));
 
-    const taskResponse = TaskPresenter.taskPresenter(task);
-
-    return res.status(200).json(taskResponse);
+    return res.status(200).json(formattedTasks);
   }
 }

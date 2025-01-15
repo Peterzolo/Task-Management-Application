@@ -51,19 +51,23 @@ export class TaskService {
     );
   }
 
-  // Fetch a task by ID
-  static async getTaskById(taskId: string): Promise<Partial<ITask>> {
-    const task = await TaskRepository.getTaskById(taskId);
+  // Fetch all tasks
+  static async getAllUserTasks(userId: string): Promise<Partial<ITask>[]> {
+    const tasks = await TaskRepository.findTasksByUserId(userId);
 
-    if (!task) {
-      throw new NotFoundError(`Task with ID ${taskId} not found`);
+    if (tasks.length === 0) {
+      throw new NotFoundError('No tasks found');
     }
-    return TaskPresenter.taskPresenter({
-      id: task.id,
-      title: task.title,
-      description: task.description,
-      dueDate: task.dueDate,
-      status: task.status,
-    } as TaskResponseData);
+
+    // Use the presenter to format each task
+    return tasks.map((task) =>
+      TaskPresenter.taskPresenter({
+        id: task.id,
+        title: task.title,
+        description: task.description,
+        dueDate: task.dueDate,
+        status: task.status,
+      } as TaskResponseData),
+    );
   }
 }
