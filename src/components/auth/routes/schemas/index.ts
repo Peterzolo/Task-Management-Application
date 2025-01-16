@@ -37,6 +37,9 @@ const password = Joi.string()
 const role = Joi.string().required().messages({
   'string.required': 'Password is required',
 });
+const otp = Joi.string().required().messages({
+  'string.required': 'OTP is required',
+});
 const name = Joi.string().optional();
 
 export default {
@@ -59,5 +62,12 @@ export default {
   resetPassword: Joi.object().keys({
     password,
     token,
+  }),
+  sendOTP: Joi.object().keys({
+    email,
+  }),
+  verifyOTP: Joi.object().keys({
+    email,
+    otp,
   }),
 };

@@ -4,6 +4,7 @@ import { AuthResponseDto, SignInDto, SignUpDto } from '../../../types/auth/IAuth
 import { AuthRepository } from '../repositories/AuthRepository';
 import { BadRequestError } from '../../../library/helpers';
 import { sendEmail } from '../../email';
+import speakeasy from 'speakeasy';
 
 export class AuthService {
   private static generateToken(payload: object): string {
@@ -78,5 +79,53 @@ export class AuthService {
 
     const hashedPassword = await bcrypt.hash(password, 10);
     await AuthRepository.resetPassword(user, hashedPassword);
+  }
+
+  // Handling 2FA Flow
+
+  private static generateOTP(): { otp: string; expiry: Date } {
+    const otp = speakeasy.totp({ secret: process.env.OTP_SECRET as string, digits: 6, encoding: 'base32', step: 300 });
+    const expiry = new Date(Date.now() + 5 * 60 * 1000);
+    return { otp, expiry };
+  }
+
+  static async sendOTP(email: string): Promise<void> {
+    const user = await AuthRepository.findByEmail(email);
+    if (!user) {
+      throw new BadRequestError('User not found');
+    }
+
+    const { otp, expiry } = this.generateOTP();
+    // eslint-disable-next-line no-console
+    console.log('OTP', otp);
+
+    // Save OTP securely (hashing for better security)
+    await AuthRepository.generateAndSaveOTP(user, otp, expiry);
+
+    // Send OTP (email or SMS)
+    const message = `Your OTP code is: ${otp}. It is valid for 5 minutes`;
+    const subject = 'Your OTP Code';
+
+    await sendEmail(user.email, subject, message);
+  }
+
+  static async verifyOTP(email: string, otp: string): Promise<string> {
+    const user = await AuthRepository.findByEmail(email);
+    if (!user) {
+      throw new BadRequestError('User not found');
+    }
+
+    // Compare OTP
+    const isValidOTP = await AuthRepository.findByOTP(otp);
+    if (!isValidOTP) {
+      throw new BadRequestError('Invalid or expired OTP');
+    }
+
+    // Clear OTP after successful verification
+    await AuthRepository.clearOTP(user);
+
+    // Generate a JWT token after OTP verification
+    const token = this.generateToken({ id: user.id, email: user.email, role: user.role });
+    return token;
   }
 }

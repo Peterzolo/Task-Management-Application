@@ -36,4 +36,15 @@ export class AuthController {
 
     return res.status(200).json({ message: 'Password reset successful' });
   }
+
+  static async sendOTP(req: Request, res: Response): Promise<Response> {
+    await AuthService.sendOTP(req.body.email);
+    return res.status(200).json({ message: 'OTP sent successfully' });
+  }
+
+  static async verifyOTP(req: Request, res: Response): Promise<Response> {
+    const { email, otp } = req.body;
+    const token = await AuthService.verifyOTP(email, otp);
+    return res.status(200).json({ token, message: 'OTP verified successfully' });
+  }
 }
