@@ -52,4 +52,12 @@ export default {
     email,
     password,
   }),
+
+  forgotPassword: Joi.object().keys({
+    email,
+  }),
+  resetPassword: Joi.object().keys({
+    password,
+    token,
+  }),
 };

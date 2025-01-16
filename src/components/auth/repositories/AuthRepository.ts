@@ -1,4 +1,6 @@
 import { Auth } from '../model/Auth';
+import { Op } from 'sequelize';
+import crypto from 'crypto';
 
 export class AuthRepository {
   static async createUser(data: Partial<Auth>): Promise<Auth> {
@@ -29,5 +31,44 @@ export class AuthRepository {
 
   static async findByEmail(email: string): Promise<Auth | null> {
     return await Auth.findOne({ where: { email } });
+  }
+
+  static async generateResetToken(email: string): Promise<string> {
+    const token = crypto.randomBytes(32).toString('hex');
+    const user = await this.findByEmail(email);
+
+    if (!user) {
+      throw new Error('User with this email does not exist');
+    }
+
+    await user.update({
+      resetPasswordToken: token,
+      resetPasswordExpires: new Date(Date.now() + 3600000), // 1 hour from now
+    });
+
+    return token;
+  }
+
+  static async findByResetToken(token: string): Promise<Auth | null> {
+    if (!token) {
+      throw new Error('Token is required');
+    }
+
+    return Auth.findOne({
+      where: {
+        resetPasswordToken: token,
+        resetPasswordExpires: { [Op.gt]: new Date() },
+      },
+    });
+  }
+
+  static async resetPassword(user: Auth, password: string): Promise<void> {
+    // eslint-disable-next-line no-console
+    console.log('USER', user);
+    await user.update({
+      password: password,
+      resetPasswordToken: null,
+      resetPasswordExpires: null,
+    });
   }
 }

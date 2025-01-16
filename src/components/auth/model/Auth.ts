@@ -41,6 +41,15 @@ export const initializeAuthModel = (sequelize: Sequelize): void => {
       type: DataTypes.STRING,
       allowNull: true,
     },
+
+    resetPasswordToken: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    resetPasswordExpires: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
   };
 
   Auth.init(attributes, {

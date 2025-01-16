@@ -16,5 +16,7 @@ authRouter.get(
 
 authRouter.post('/signup', validator(schema.signUp), tryCatcher(AuthController.signUp));
 authRouter.post('/login', validator(schema.login), tryCatcher(AuthController.signIn));
+authRouter.post('/forgot-password', validator(schema.forgotPassword), tryCatcher(AuthController.forgotPassword));
+authRouter.post('/reset-password', validator(schema.resetPassword), tryCatcher(AuthController.resetPassword));
 
 export default authRouter;

@@ -12,4 +12,28 @@ export class AuthController {
     const result = await AuthService.signIn(req.body);
     return res.status(200).json(AuthPresenter.presentAuthResponse(result));
   }
+
+  static async forgotPassword(req: Request, res: Response): Promise<Response> {
+    const { email } = req.body;
+    // eslint-disable-next-line no-console
+    console.log('EMAIL', email);
+    const resetLink = await AuthService.forgotPassword(email);
+
+    // eslint-disable-next-line no-console
+    console.log('RESET LINK', resetLink);
+
+    return res.status(200).json({ message: 'Password reset link sent to email', resetLink });
+  }
+
+  static async resetPassword(req: Request, res: Response): Promise<Response> {
+    const { token, password } = req.body;
+
+    if (!token || !password) {
+      return res.status(400).json({ message: 'Token and new password are required' });
+    }
+
+    await AuthService.resetPassword(token, password);
+
+    return res.status(200).json({ message: 'Password reset successful' });
+  }
 }
