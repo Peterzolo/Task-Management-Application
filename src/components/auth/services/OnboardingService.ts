@@ -54,11 +54,6 @@ export class AuthService {
     const token = await AuthRepository.generateResetToken(email);
     const resetLink = `${process.env.FRONTEND_BASE}/reset-password?token=${token}`;
 
-    // eslint-disable-next-line no-console
-    console.log(' TKEN', token);
-    // eslint-disable-next-line no-console
-    console.log('RESET LINK', resetLink);
-
     // In the real world development, we would use an email template to send this
     const subject = 'Password Reset Request';
     const htmlContent = `
@@ -71,7 +66,7 @@ export class AuthService {
     return resetLink;
   }
 
-  static async resetPassword(token: string, newPassword: string): Promise<void> {
+  static async resetPassword(token: string, password: string): Promise<void> {
     if (!token) {
       throw new BadRequestError('Reset token is required');
     }
@@ -81,7 +76,7 @@ export class AuthService {
       throw new BadRequestError('Invalid or expired reset token');
     }
 
-    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    const hashedPassword = await bcrypt.hash(password, 10);
     await AuthRepository.resetPassword(user, hashedPassword);
   }
 }

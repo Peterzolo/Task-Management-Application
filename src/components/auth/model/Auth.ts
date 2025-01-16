@@ -50,6 +50,15 @@ export const initializeAuthModel = (sequelize: Sequelize): void => {
       type: DataTypes.DATE,
       allowNull: true,
     },
+
+    otp: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    otpExpires: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
   };
 
   Auth.init(attributes, {

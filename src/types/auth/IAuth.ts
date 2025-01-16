@@ -27,8 +27,10 @@ export interface IAuth {
   name?: string | null;
   createdAt?: Date;
   updatedAt?: Date;
-  resetPasswordToken?: string | null; // Allow null
-  resetPasswordExpires?: Date | null; // Allow null
+  resetPasswordToken?: string | null;
+  resetPasswordExpires?: Date | null;
+  otp?: string | null;
+  otpExpires?: string | Date | null;
 }
 
 export interface UserPayload {

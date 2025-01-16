@@ -71,4 +71,27 @@ export class AuthRepository {
       resetPasswordExpires: null,
     });
   }
+
+  static async generateAndSaveOTP(user: Auth, otp: string, expiry: Date): Promise<void> {
+    await user.update({
+      otp,
+      otpExpires: expiry,
+    });
+  }
+
+  static async findByOTP(otp: string): Promise<Auth | null> {
+    return Auth.findOne({
+      where: {
+        otp,
+        otpExpires: { [Op.gt]: new Date() }, // OTP not expired
+      },
+    });
+  }
+
+  static async clearOTP(user: Auth): Promise<void> {
+    await user.update({
+      otp: null,
+      otpExpires: null,
+    });
+  }
 }
