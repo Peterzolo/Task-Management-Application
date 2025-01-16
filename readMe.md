@@ -50,5 +50,5 @@ Before you start, ensure you have the following installed:
    Clone this repository to your local machine:
 
    ```bash
-   git clone https://github.com/your-username/task-management-app.git
+   git clone : git@github.com:Peterzolo/Task-Management-Application.git
    cd task-management-app
