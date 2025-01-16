@@ -10,13 +10,8 @@ A task management application built with **Node.js**, **TypeScript**, **PostgreS
 - [Configuration](#configuration)
 - [Running the Application](#running-the-application)
 - [API Documentation](#api-documentation)
-- [Database Setup](#database-setup)
-- [Docker Setup](#docker-setup)
-- [Contributing](#contributing)
-- [License](#license)
 
 ---
-
 ## **API Documentation**
 
 For detailed API documentation, including all available endpoints, request parameters, and responses, refer to the Postman API documentation: [Task Management API Documentation](https://documenter.getpostman.com/view/10754987/2sAYQZHs1H)
