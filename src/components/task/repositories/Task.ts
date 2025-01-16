@@ -1,23 +1,21 @@
 import { Op } from 'sequelize';
-import { BadRequestError } from '../../../library/helpers';
+import { BadRequestError, NotFoundError } from '../../../library/helpers';
 import { Task } from '../model/Task';
 
 export class TaskRepository {
   static async createTask(data: Partial<Task>): Promise<Task> {
     try {
-      // Create the user in the database
       return await Task.create(data as Task);
     } catch (error) {
       if (error instanceof Error) {
-        throw new Error('Error creating user: ' + error.message);
+        throw new Error('Error creating task: ' + error.message);
       } else {
-        throw new Error('Error creating user');
+        throw new Error('Error creating task');
       }
     }
   }
 
   static async findTaskByTitle(title: string): Promise<Task | null> {
-    // Search for a task with the same title and due date
     return Task.findOne({
       where: {
         title,
@@ -27,11 +25,10 @@ export class TaskRepository {
 
   static async updateTask(id: string, data: Partial<Task>, userId: string): Promise<Task | null> {
     try {
-      // Find the task by ID and verify ownership
       const task = await Task.findOne({
         where: {
           id,
-          userId, // Ensure the task belongs to the user
+          userId,
         },
       });
 
@@ -39,7 +36,6 @@ export class TaskRepository {
         throw new BadRequestError('Task not found or you are not authorized to update this task');
       }
 
-      // Update the task with the new data
       await task.update(data);
       return task;
     } catch (error) {
@@ -51,10 +47,8 @@ export class TaskRepository {
     }
   }
 
-  // Delete a task by its ID
   static async deleteTask(id: string): Promise<boolean> {
     try {
-      // Find the task to delete
       const task = await Task.findOne({
         where: {
           id,
@@ -62,7 +56,7 @@ export class TaskRepository {
       });
 
       if (!task) {
-        throw new Error('Task not found');
+        throw new NotFoundError('Task not found');
       }
 
       await task.destroy();
