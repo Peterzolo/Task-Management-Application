@@ -1,6 +1,6 @@
 # **Task Management Application**
 
-A task management application built with **Node.js**, **TypeScript**, **PostgreSQL**, and **Sequelize**. This app allows users to manage tasks, create projects, and assign tasks to team members. It provides a simple API for managing tasks and projects with full CRUD functionality.
+A task management application built with **Node.js**, **TypeScript**, **PostgreSQL**, and **Sequelize**. This app allows users sign up, authenticate and create task with title, description, set due date etc. The administration is based on permission and authorization. 
 
 ## **Table of Contents**
 
@@ -26,10 +26,9 @@ For detailed API documentation, including all available endpoints, request param
 ## **Features**
 
 - **Task Creation**: Create tasks with titles, descriptions, and due dates.
-- **Task Assignment**: Assign tasks to users.
 - **Project Management**: Create, update, and delete projects.
 - **Task Status**: Track the status of tasks (Pending, In Progress, Completed).
-- **User Management**: Manage users and assign them to projects.
+- **permission**: Handling of tasks is by permission as the application uses RBAC.
 - **API Endpoints**: RESTful API for interacting with tasks and projects.
 
 ---
