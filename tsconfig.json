@@ -19,11 +19,13 @@
     "outDir": "build",
     "types": [
       "node",
-      "jest"
+      "jest"  // Add jest here to make sure Jest types are included
     ],
     "sourceMap": true,
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "skipLibCheck": true,  // Skip type checking of declaration files
+    "allowSyntheticDefaultImports": true  // Allow synthetic default imports for modules
   },
   "include": [
     "src/**/*.ts"
@@ -32,7 +34,5 @@
     ".templates",
     "node_modules"
   ],
-  "files": [
-    "src/types/express/express"
-  ]
+  "files": []
 }
