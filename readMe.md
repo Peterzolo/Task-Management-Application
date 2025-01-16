@@ -1,6 +1,6 @@
 # **Task Management Application**
 
-A task management application built with **Node.js**, **TypeScript**, **PostgreSQL**, and **Sequelize**. This app allows users sign up, authenticate and create task with title, description, set due date etc. The administration is based on permission and authorization. 
+A task management application built with **Node.js**, **TypeScript**, **PostgreSQL**, and **Sequelize**. This app allows users to sign up, authenticate, and create tasks with titles, descriptions, due dates, etc. The administration is based on permission and authorization. 
 
 ## **Table of Contents**
 
@@ -12,6 +12,7 @@ A task management application built with **Node.js**, **TypeScript**, **PostgreS
 - [API Documentation](#api-documentation)
 
 ---
+
 ## **API Documentation**
 
 For detailed API documentation, including all available endpoints, request parameters, and responses, refer to the Postman API documentation: [Task Management API Documentation](https://documenter.getpostman.com/view/10754987/2sAYQZHs1H)
@@ -23,7 +24,7 @@ For detailed API documentation, including all available endpoints, request param
 - **Task Creation**: Create tasks with titles, descriptions, and due dates.
 - **Project Management**: Create, update, and delete projects.
 - **Task Status**: Track the status of tasks (Pending, In Progress, Completed).
-- **permission**: Handling of tasks is by permission as the application uses RBAC.
+- **Permission**: Handling of tasks is based on permissions, as the application uses RBAC (Role-Based Access Control).
 - **API Endpoints**: RESTful API for interacting with tasks and projects.
 
 ---
