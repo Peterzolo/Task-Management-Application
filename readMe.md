@@ -59,3 +59,4 @@ Before setting up the application, ensure that the following tools are installed
    ```bash
    git clone git@github.com:Peterzolo/Task-Management-Application.git
    cd task-management-app
+   npm install for dependencies and npm run watch to start the application
